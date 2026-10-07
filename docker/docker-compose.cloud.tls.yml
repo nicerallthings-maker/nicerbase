@@ -1,0 +1,59 @@
+# NicerBase Cloud: encrypt customer connections to the tenant databases.
+#
+# Usage:
+#   docker compose -f docker-compose.cloud.yml -f docker-compose.cloud.tls.yml --env-file .env.cloud up -d --build
+#
+# Without your own certificate this generates a self-signed one. Customers download
+# it from the console (/nicerbase-ca.crt) and their connection strings verify the
+# server against it (sslmode=verify-full / tlsCAFile). With a certificate from a
+# public CA, put server.crt, server.key and ca.crt in docker/volumes/cloud-tls and set
+# NICERBASE_DB_TLS_VERIFIED=true; clients then verify with their system trust store.
+
+services:
+  tls-init:
+    # The postgres image ships openssl, so nothing is downloaded at start.
+    image: postgres:17
+    user: root
+    entrypoint: ['/bin/sh', '/tls-init.sh']
+    environment:
+      TLS_HOSTNAME: ${NICERBASE_POSTGRES_PUBLIC_HOST:-localhost}
+    volumes:
+      - ./cloud/tls-init.sh:/tls-init.sh:ro
+      - ./volumes/cloud-tls:/tls
+
+  tenant-postgres:
+    depends_on:
+      tls-init:
+        condition: service_completed_successfully
+    command:
+      - postgres
+      - -c
+      - ssl=on
+      - -c
+      - ssl_cert_file=/tls/server.crt
+      - -c
+      - ssl_key_file=/tls/server.key
+    volumes:
+      - ./volumes/cloud-tls:/tls:ro
+
+  tenant-mongodb:
+    depends_on:
+      tls-init:
+        condition: service_completed_successfully
+    # preferTLS: customers connect with TLS; in-cluster services may still use plain.
+    command:
+      ['--auth', '--bind_ip_all', '--tlsMode', 'preferTLS', '--tlsCertificateKeyFile', '/tls/server.pem', '--tlsCAFile', '/tls/ca.crt', '--tlsAllowConnectionsWithoutCertificates']
+    volumes:
+      - ./volumes/cloud-tls:/tls:ro
+
+  cloud:
+    depends_on:
+      tls-init:
+        condition: service_completed_successfully
+    environment:
+      NICERBASE_DB_TLS: 'true'
+      NICERBASE_DB_TLS_VERIFIED: ${NICERBASE_DB_TLS_VERIFIED:-false}
+      NICERBASE_DB_CA_FILE: /tls/ca.crt
+    volumes:
+      # The private key in this folder is only readable by uid 999, not by the console.
+      - ./volumes/cloud-tls:/tls:ro

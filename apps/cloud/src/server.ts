@@ -51,7 +51,12 @@ import {
   ProjectError,
   resetProjectPassword,
 } from './projects.js'
-import { hardenPostgresCluster, isMongoAvailable } from './provision.js'
+import {
+  CA_FILE_NAME,
+  hardenPostgresCluster,
+  isMongoAvailable,
+  needsCaDownload,
+} from './provision.js'
 import {
   accountPage,
   forgotPasswordPage,
@@ -338,6 +343,14 @@ async function route(ctx: Context) {
   const path = url.pathname.replace(/\/+$/, '') || '/'
 
   if (method === 'GET' && STATIC_FILES.has(path)) return serveStatic(ctx)
+  if (method === 'GET' && path === `/${CA_FILE_NAME}` && config.dbCaFile) {
+    res.writeHead(200, {
+      'Content-Type': 'application/x-pem-file',
+      'Content-Disposition': `attachment; filename="${CA_FILE_NAME}"`,
+      'Cache-Control': 'no-cache',
+    })
+    return res.end(await readFile(config.dbCaFile))
+  }
   if (method === 'GET' && path === '/healthz') {
     res.writeHead(200, { 'Content-Type': 'application/json' })
     return res.end('{"ok":true}')
@@ -551,7 +564,14 @@ async function route(ctx: Context) {
           ? 'Password rotated. Update your apps with the new connection string.'
           : undefined
       const connection = project.status === 'active' ? getConnectionString(project) : undefined
-      return send(res, 200, projectPage(user, project, connection, { notice }))
+      return send(
+        res,
+        200,
+        projectPage(user, project, connection, {
+          notice,
+          caFile: needsCaDownload() && config.dbCaFile ? CA_FILE_NAME : undefined,
+        })
+      )
     }
     if (method === 'POST' && rest === '/reset-password') {
       await resetProjectPassword(user.id, ref)

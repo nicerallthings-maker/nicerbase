@@ -29,6 +29,12 @@ export const config = {
     // `||` (not `??`): Docker Compose passes unset variables as empty strings.
     (process.env.NICERBASE_REQUIRE_EMAIL_VERIFICATION ||
       (process.env.NICERBASE_SMTP_URL ? 'true' : 'false')) === 'true',
+  /** Customer connection strings require TLS (see docker-compose.cloud.tls.yml). */
+  dbTls: process.env.NICERBASE_DB_TLS === 'true',
+  /** The database certificate is signed by a public CA, so clients verify it with their system store. */
+  dbTlsVerified: process.env.NICERBASE_DB_TLS_VERIFIED === 'true',
+  /** CA certificate customers download to verify a self-signed database certificate. */
+  dbCaFile: process.env.NICERBASE_DB_CA_FILE || '',
   /** Trust X-Forwarded-For for client IPs (set only when running behind a reverse proxy). */
   trustProxy: process.env.NICERBASE_TRUST_PROXY === 'true',
   maxProjectsPerUser: Number(process.env.NICERBASE_MAX_PROJECTS_PER_USER || 5),

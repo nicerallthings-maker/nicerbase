@@ -129,10 +129,26 @@ export async function rotateMongoPassword(
   await (await getMongo()).db(databaseName).command({ updateUser: username, pwd: password })
 }
 
+/** File name customers save the database CA certificate as (see /nicerbase-ca.crt). */
+export const CA_FILE_NAME = 'nicerbase-ca.crt'
+
+/** Whether customers must download our CA certificate to verify TLS connections. */
+export const needsCaDownload = () => config.dbTls && !config.dbTlsVerified
+
 export function connectionString(engine: Engine, creds: TenantCredentials) {
   const { databaseName, username, password } = creds
   if (engine === 'postgres') {
-    return `postgresql://${username}:${password}@${config.postgresPublicHost}:${config.postgresPublicPort}/${databaseName}`
+    // verify-full checks both encryption and the server's identity.
+    let tls = ''
+    if (config.dbTls) {
+      // With a public CA, drivers use the system trust store (psql 16+: add sslrootcert=system).
+      tls = needsCaDownload()
+        ? `?sslmode=verify-full&sslrootcert=${CA_FILE_NAME}`
+        : '?sslmode=verify-full'
+    }
+    return `postgresql://${username}:${password}@${config.postgresPublicHost}:${config.postgresPublicPort}/${databaseName}${tls}`
   }
-  return `mongodb://${username}:${password}@${config.mongoPublicHost}:${config.mongoPublicPort}/${databaseName}?authSource=${databaseName}`
+  let tls = ''
+  if (config.dbTls) tls = needsCaDownload() ? `&tls=true&tlsCAFile=${CA_FILE_NAME}` : '&tls=true'
+  return `mongodb://${username}:${password}@${config.mongoPublicHost}:${config.mongoPublicPort}/${databaseName}?authSource=${databaseName}${tls}`
 }

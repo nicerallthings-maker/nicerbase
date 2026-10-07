@@ -144,7 +144,7 @@ export function landingPage(user?: User) {
               <ul>
                 <li>Dedicated database and login role</li>
                 <li>Works with any Postgres driver or ORM</li>
-                <li>Rotate credentials from the console</li>
+                <li>Browse tables and run SQL in the console</li>
               </ul>
             </div>
             <div class="engine">
@@ -153,7 +153,7 @@ export function landingPage(user?: User) {
               <ul>
                 <li>Dedicated database and user</li>
                 <li>Works with every official MongoDB driver</li>
-                <li>Rotate credentials from the console</li>
+                <li>Browse, filter and edit documents in the console</li>
               </ul>
             </div>
           </div>
@@ -431,7 +431,7 @@ export function projectPage(
   user: User,
   project: Project,
   connection: string | undefined,
-  options: { notice?: string; error?: string }
+  options: { notice?: string; error?: string; caFile?: string }
 ) {
   const masked = connection?.replace(/:([^:@/]+)@/, ':••••••••@')
   const envName = project.engine === 'postgres' ? 'DATABASE_URL' : 'MONGODB_URL'
@@ -486,6 +486,13 @@ export function projectPage(
                   </button>
                 </div>`
               : html`<p class="hint">Available once the project is active.</p>`}
+            ${connection && options.caFile
+              ? html`<p class="hint" style="margin:12px 0 0">
+                  Connections are encrypted and verified against the NicerBase certificate.
+                  <a href="/${options.caFile}" download>Download ${options.caFile}</a> and save it
+                  in your app's working directory.
+                </p>`
+              : ''}
           </div>
 
           <div class="card">

@@ -12,6 +12,10 @@ so pages load fast with no client framework.
 | --------- | ------------------------------------------------------------------------------------------------------------------------ |
 | Accounts  | Email + password sign-up and sign-in. Passwords hashed with scrypt; sessions are random tokens stored as SHA-256 hashes. |
 | Projects  | Create, view, rotate password, delete. Engine is Postgres or MongoDB, chosen at creation.                                |
+| Data      | Postgres: table browser + SQL editor. MongoDB: collections, filter, insert, delete. Runs as the tenant's own login.      |
+| Account   | Email verification, forgot/reset password, change password, delete account (removes every project's database).           |
+| Backups   | Daily per-tenant `pg_dump` and `mongodump` with retention (`backup-postgres`, `backup-mongodb` services).                |
+| HTTPS     | `docker-compose.cloud.https.yml` adds Caddy with automatic Let's Encrypt certificates.                                   |
 | Postgres  | One database + one login role per project. No superuser/createdb/createrole. `CONNECT` revoked from `PUBLIC`.            |
 | MongoDB   | One database + one user per project with `dbOwner` on that database only.                                                |
 | Secrets   | Tenant passwords are encrypted at rest with AES-256-GCM using `NICERBASE_SECRET_KEY`.                                    |
@@ -45,13 +49,31 @@ pnpm --filter cloud dev
 | `NICERBASE_POSTGRES_PUBLIC_HOST` / `NICERBASE_MONGODB_PUBLIC_HOST` | Host shown in customer connection strings.                |
 | `NICERBASE_MAX_PROJECTS_PER_USER`                                  | Project quota per account (default 5).                    |
 
-## Before taking paying customers
+## Going to production
 
-- **TLS**: put the console behind HTTPS and require TLS on the Postgres and MongoDB ports.
-- **Backups**: schedule `pg_dump` / `mongodump` (or volume snapshots) per tenant.
-- **Email**: add email verification and password reset (needs an SMTP provider).
+```bash
+# In docker/.env.cloud set NICERBASE_DOMAIN, NICERBASE_PUBLIC_URL=https://<domain>,
+# and NICERBASE_SMTP_URL (e.g. smtps://user:pass@smtp.example.com:465)
+docker compose -f docker-compose.cloud.yml -f docker-compose.cloud.https.yml --env-file .env.cloud up -d --build
+```
+
+Encrypt customer database connections too (generates a certificate customers download
+from the console, or uses yours from `docker/volumes/cloud-tls`):
+
+```bash
+docker compose -f docker-compose.cloud.yml -f docker-compose.cloud.https.yml -f docker-compose.cloud.tls.yml \
+  --env-file .env.cloud up -d --build
+```
+
+Connection strings then use `sslmode=verify-full` (Postgres) and `tls=true` (MongoDB).
+
+Backups land in `docker/volumes/cloud-backups`; copy them off the server (for example
+with `rclone` to object storage) so a lost disk doesn't take the backups with it.
+
+## Still to do before taking paying customers
+
+- **Billing**: pricing is intentionally left for later.
 - **Legal**: `/terms` and `/privacy` are drafts; have them reviewed.
 - **MongoDB license**: MongoDB Community is SSPL. Offering it as a hosted service has
   obligations under SSPL section 13. FerretDB (Apache 2.0, MongoDB wire-compatible) avoids this.
-- **Per-project Studio**: projects get connection strings today; a per-tenant Studio
-  (dashboard for each customer database) is the next milestone.
+- **Off-site backups** and monitoring/alerting for the servers.
