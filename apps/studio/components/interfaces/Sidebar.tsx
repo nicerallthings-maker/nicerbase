@@ -187,7 +187,10 @@ export function SideBarNavLink({
     disabled: route.disabled,
     isActive: active,
     isLoading,
-    className: cn('text-sm', sidebarBehaviour === 'open' ? 'px-2!' : ''),
+    className: cn(
+      'text-sm data-[active=true]:[&>svg]:text-brand',
+      sidebarBehaviour === 'open' ? 'px-2!' : ''
+    ),
     size: 'default' as const,
     onClick: onClick,
   }
