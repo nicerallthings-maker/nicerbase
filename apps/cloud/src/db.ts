@@ -39,9 +39,21 @@ create table if not exists nicerbase.projects (
   created_at timestamptz not null default now()
 );
 create index if not exists projects_owner_idx on nicerbase.projects(owner_id);
+
+alter table nicerbase.users add column if not exists email_verified_at timestamptz;
+
+create table if not exists nicerbase.tokens (
+  token_hash text primary key,
+  user_id uuid not null references nicerbase.users(id) on delete cascade,
+  purpose text not null check (purpose in ('verify-email', 'reset-password')),
+  expires_at timestamptz not null,
+  created_at timestamptz not null default now()
+);
+create index if not exists tokens_user_idx on nicerbase.tokens(user_id);
 `
 
 export async function migrate() {
   await pool.query(MIGRATIONS)
   await pool.query('delete from nicerbase.sessions where expires_at < now()')
+  await pool.query('delete from nicerbase.tokens where expires_at < now()')
 }

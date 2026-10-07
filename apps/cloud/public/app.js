@@ -22,3 +22,14 @@ document.addEventListener('submit', function (e) {
   var msg = e.target.getAttribute('data-confirm')
   if (msg && !window.confirm(msg)) e.preventDefault()
 })
+document.addEventListener('keydown', function (e) {
+  if (
+    (e.metaKey || e.ctrlKey) &&
+    e.key === 'Enter' &&
+    e.target.matches &&
+    e.target.matches('textarea')
+  ) {
+    e.preventDefault()
+    e.target.form && e.target.form.requestSubmit()
+  }
+})

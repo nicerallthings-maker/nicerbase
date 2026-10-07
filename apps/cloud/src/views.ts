@@ -2,6 +2,34 @@ import type { User } from './auth.js'
 import { html, SafeHtml } from './html.js'
 import type { Project } from './projects.js'
 
+export type ProjectTab = 'overview' | 'tables' | 'sql' | 'collections'
+
+export function projectTabs(project: Project, active: ProjectTab) {
+  const base = `/projects/${project.ref}`
+  const tabs: Array<[ProjectTab, string, string]> =
+    project.engine === 'postgres'
+      ? [
+          ['overview', 'Overview', base],
+          ['tables', 'Tables', `${base}/tables`],
+          ['sql', 'SQL editor', `${base}/sql`],
+        ]
+      : [
+          ['overview', 'Overview', base],
+          ['collections', 'Collections', `${base}/collections`],
+        ]
+  return html`<nav class="tabs" aria-label="Project sections">
+    ${tabs.map(
+      ([key, label, href]) =>
+        html`<a
+          href="${href}"
+          class="${key === active ? 'tab tab-active' : 'tab'}"
+          ${key === active ? html`aria-current="page"` : ''}
+          >${label}</a
+        >`
+    )}
+  </nav>`
+}
+
 type LayoutOptions = { title: string; user?: User; description?: string }
 
 export function layout({ title, user, description }: LayoutOptions, body: SafeHtml) {
@@ -31,7 +59,7 @@ export function layout({ title, user, description }: LayoutOptions, body: SafeHt
             <nav class="nav-links">
               ${user
                 ? html`<a href="/dashboard">Projects</a>
-                    <span class="hide-sm hint">${user.email}</span>
+                    <a class="hide-sm" href="/account">Account</a>
                     <form method="post" action="/sign-out" style="margin:0">
                       <button type="submit">Sign out</button>
                     </form>`
@@ -205,7 +233,7 @@ export function signUpPage(error?: string, values: AuthFormValues = {}) {
   )
 }
 
-export function signInPage(error?: string, values: AuthFormValues = {}) {
+export function signInPage(error?: string, values: AuthFormValues = {}, notice?: string) {
   return layout(
     { title: 'Sign In' },
     html` <section class="auth">
@@ -213,6 +241,7 @@ export function signInPage(error?: string, values: AuthFormValues = {}) {
         <img src="/mark.svg" alt="" width="44" height="44" />
         <h1>Welcome back</h1>
         <p class="sub">Sign in to manage your projects.</p>
+        ${notice ? html`<div class="alert alert-ok" role="status">${notice}</div>` : ''}
         ${error ? html`<div class="alert alert-error" role="alert">${error}</div>` : ''}
         <form method="post" action="/sign-in" novalidate>
           <div class="field">
@@ -236,6 +265,7 @@ export function signInPage(error?: string, values: AuthFormValues = {}) {
               required
             />
           </div>
+          <p class="forgot"><a href="/forgot-password">Forgot password?</a></p>
           <button class="btn btn-primary" type="submit" style="width:100%">Sign in</button>
         </form>
         <p class="switch">New to NicerBase? <a href="/sign-up">Create an account</a></p>
@@ -262,7 +292,11 @@ function statusBadge(status: Project['status']) {
   return html`<span class="${className}">${label}</span>`
 }
 
-export function dashboardPage(user: User, projects: Project[], notice?: string) {
+export function dashboardPage(
+  user: User,
+  projects: Project[],
+  options: { notice?: string; banner?: SafeHtml } = {}
+) {
   return layout(
     { title: 'Projects', user },
     html` <section class="page">
@@ -276,7 +310,10 @@ export function dashboardPage(user: User, projects: Project[], notice?: string) 
           </div>
           <div class="actions"><a class="btn btn-primary" href="/projects/new">New project</a></div>
         </div>
-        ${notice ? html`<div class="alert alert-ok" role="status">${notice}</div>` : ''}
+        ${options.banner ?? ''}
+        ${options.notice
+          ? html`<div class="alert alert-ok" role="status">${options.notice}</div>`
+          : ''}
         ${projects.length === 0
           ? html`<div class="empty">
               <h3 style="margin-top:0">No projects yet</h3>
@@ -414,6 +451,7 @@ export function projectPage(
             <h1 style="margin-top:6px">${project.name}</h1>
           </div>
         </div>
+        ${project.status === 'active' ? projectTabs(project, 'overview') : ''}
         ${options.notice
           ? html`<div class="alert alert-ok" role="status">${options.notice}</div>`
           : ''}

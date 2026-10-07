@@ -21,6 +21,13 @@ export const config = {
   /** Host and port customers use to reach their MongoDB databases. */
   mongoPublicHost: process.env.NICERBASE_MONGODB_PUBLIC_HOST ?? 'localhost',
   mongoPublicPort: Number(process.env.NICERBASE_MONGODB_PUBLIC_PORT ?? 27017),
+  /** SMTP connection URL, e.g. smtps://user:pass@smtp.example.com:465. Unset = log emails. */
+  smtpUrl: process.env.NICERBASE_SMTP_URL ?? '',
+  mailFrom: process.env.NICERBASE_MAIL_FROM ?? 'NicerBase <no-reply@localhost>',
+  /** Require a verified email before creating projects. Defaults to on when SMTP is set. */
+  requireEmailVerification:
+    (process.env.NICERBASE_REQUIRE_EMAIL_VERIFICATION ??
+      (process.env.NICERBASE_SMTP_URL ? 'true' : 'false')) === 'true',
   maxProjectsPerUser: Number(process.env.NICERBASE_MAX_PROJECTS_PER_USER ?? 5),
 }
 
