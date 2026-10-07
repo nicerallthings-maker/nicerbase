@@ -1,0 +1,25 @@
+{
+  "name": "cloud",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NicerBase Cloud: sign-up, sign-in and multi-tenant Postgres / MongoDB project provisioning",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "mongodb": "^6.21.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/pg": "^8.15.5",
+    "tsx": "^4.20.6",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
