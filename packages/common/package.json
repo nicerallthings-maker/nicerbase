@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@types/dat.gui": "^0.7.12",
-    "@usercentrics/cmp-browser-sdk": "^4.42.0",
+    "@usercentrics/cmp-browser-sdk": "^4.64.0",
     "api-types": "workspace:*",
     "config": "workspace:*",
     "configcat-js": "^9.5.1",
