@@ -133,6 +133,7 @@ export const generateProductRoutes = (
       disabled: !isProjectActive,
       icon: <Leaf size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/mongodb`),
+      shortcutId: SHORTCUT_IDS.NAV_MONGODB,
     },
     ...(authEnabled
       ? [

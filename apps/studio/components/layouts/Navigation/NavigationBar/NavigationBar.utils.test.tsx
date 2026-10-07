@@ -77,12 +77,12 @@ describe('generateProductRoutes', () => {
       edgeFunctions: true,
       realtime: true,
     })
-    expect(keys(routes)).toEqual(['database', 'auth', 'storage', 'functions', 'realtime'])
+    expect(keys(routes)).toEqual(['database', 'mongodb', 'auth', 'storage', 'functions', 'realtime'])
   })
 
   it('includes all product routes by default (features default to true)', () => {
     const routes = generateProductRoutes(REF, activeProject)
-    expect(keys(routes)).toEqual(['database', 'auth', 'storage', 'functions', 'realtime'])
+    expect(keys(routes)).toEqual(['database', 'mongodb', 'auth', 'storage', 'functions', 'realtime'])
   })
 
   it('includes compute only when the compute flag is enabled', () => {
@@ -137,7 +137,7 @@ describe('generateProductRoutes', () => {
       edgeFunctions: false,
       realtime: false,
     })
-    expect(keys(routes)).toEqual(['database'])
+    expect(keys(routes)).toEqual(['database', 'mongodb'])
   })
 })
 
