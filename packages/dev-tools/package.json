@@ -29,7 +29,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "config": "workspace:*",
-    "next-router-mock": "^0.9.13",
+    "next-router-mock": "^1.0.5",
     "tailwindcss": "catalog:",
     "tsconfig": "workspace:*",
     "@typescript/native": "catalog:",

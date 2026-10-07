@@ -217,7 +217,7 @@
     "import-in-the-middle": "^2.0.0",
     "jsdom-testing-mocks": "^1.13.1",
     "msw": "^2.3.0",
-    "next-router-mock": "^0.9.13",
+    "next-router-mock": "^1.0.5",
     "nitro": "3.0.260903-beta",
     "node-mocks-http": "^1.17.2",
     "postcss": "catalog:",
