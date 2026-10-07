@@ -136,7 +136,7 @@ export const GraphqlExposureLintCTA = ({
               </div>
               <p className="text-sm text-foreground-light mt-1">
                 {audience.upper} will no longer be able to read or write to this {objectType} via
-                Supabase APIs (GraphQL or Data API), even if RLS policies allow it.
+                NicerBase APIs (GraphQL or Data API), even if RLS policies allow it.
               </p>
             </div>
           </div>

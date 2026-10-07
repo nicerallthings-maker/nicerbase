@@ -103,7 +103,7 @@ const OrganizationLayoutContent = ({
     section: title,
     surface: isSettingsSurface ? 'Organization Settings' : undefined,
     org: selectedOrganization?.name,
-    brand: appTitle || 'Supabase',
+    brand: appTitle || 'NicerBase',
   })
 
   const vercelQuery = useVercelRedirectQuery(
@@ -136,7 +136,7 @@ const OrganizationLayoutContent = ({
       {pageTitle && (
         <Head>
           <title>{pageTitle}</title>
-          <meta name="description" content="Supabase Studio" />
+          <meta name="description" content="NicerBase Studio" />
         </Head>
       )}
       {selectedOrganization && bannerConfig && !isBannerDismissed && (

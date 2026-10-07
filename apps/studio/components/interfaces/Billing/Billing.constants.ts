@@ -14,7 +14,7 @@ export const CANCELLATION_REASONS = [
   },
   {
     value: 'I found it difficult to use or build with.',
-    label: 'What specific parts of Supabase did you find difficult or frustrating?',
+    label: 'What specific parts of NicerBase did you find difficult or frustrating?',
   },
   {
     value: 'Performance or reliability insufficient.',

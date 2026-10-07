@@ -3,7 +3,7 @@ export const EDGE_FUNCTION_TEMPLATES = [
     value: 'hello-world',
     name: 'Simple Hello World',
     description: 'Basic function that returns a JSON response',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
@@ -33,8 +33,8 @@ export default {
   {
     value: 'database-access',
     name: 'Supabase Database Access',
-    description: 'Example using Supabase client to query your database',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    description: 'Example using NicerBase client to query your database',
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
@@ -58,8 +58,8 @@ export default {
   {
     value: 'storage-upload',
     name: 'Supabase Storage Upload',
-    description: 'Upload files to Supabase Storage',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    description: 'Upload files to NicerBase Storage',
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import { randomUUID } from "node:crypto"
@@ -94,7 +94,7 @@ export default {
     value: 'node-api',
     name: 'Node Built-in API Example',
     description: 'Example using Node.js built-in crypto and http modules',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { randomBytes } from "node:crypto";
 import { createServer } from "node:http";
@@ -119,7 +119,7 @@ server.listen(9999);`,
     value: 'express',
     name: 'Express Server',
     description: 'Example using Express.js for routing',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import express from "npm:express@4.18.2";
 
@@ -128,7 +128,7 @@ const app = express();
 // TODO: replace slug with Function's slug
 // https://supabase.com/docs/guides/functions/routing?queryGroups=framework&framework=expressjs
 app.get(/slug/(.*)/, (req, res) => {
-  res.send("Welcome to Supabase");
+  res.send("Welcome to NicerBase");
 });
 
 app.listen(8000);`,
@@ -303,7 +303,7 @@ export default {
     value: 'stripe-webhook',
     name: 'Stripe Webhook Example',
     description: 'Handle Stripe webhook events securely',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import Stripe from "npm:stripe";
@@ -349,7 +349,7 @@ export default {
     value: 'resend-email',
     name: 'Send Emails',
     description: 'Send emails using the Resend API',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
@@ -381,7 +381,7 @@ export default {
     value: 'image-transform',
     name: 'Image Transformation',
     description: 'Transform images using ImageMagick WASM',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 import {
@@ -414,7 +414,7 @@ export default {
     value: 'websocket-server',
     name: 'WebSocket Server Example',
     description: 'Create a real-time WebSocket server',
-    content: `// Setup type definitions for built-in Supabase Runtime APIs
+    content: `// Setup type definitions for built-in NicerBase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
@@ -429,7 +429,7 @@ export default {
 
     socket.onopen = () => {
       console.log("client connected!");
-      socket.send("Welcome to Supabase Edge Functions!");
+      socket.send("Welcome to NicerBase Edge Functions!");
     };
 
     socket.onmessage = (e) => {

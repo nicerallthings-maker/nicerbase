@@ -524,7 +524,7 @@ export const getReportAttributesV2: (
           color: 'var(--chart-3)',
           fill: 'var(--chart-3-fill)',
           tooltip:
-            'Administrative connections used by various Supabase services for internal operations and maintenance tasks',
+            'Administrative connections used by various NicerBase services for internal operations and maintenance tasks',
         },
         {
           attribute: 'client_connections_supabase_auth_admin',
@@ -532,7 +532,7 @@ export const getReportAttributesV2: (
           label: 'Auth',
           color: 'var(--chart-4)',
           fill: 'var(--chart-4-fill)',
-          tooltip: 'Connection pool managed by Supabase Auth',
+          tooltip: 'Connection pool managed by NicerBase Auth',
         },
         {
           attribute: 'client_connections_supabase_storage_admin',
@@ -540,7 +540,7 @@ export const getReportAttributesV2: (
           label: 'Storage',
           color: 'var(--chart-5)',
           fill: 'var(--chart-5-fill)',
-          tooltip: 'Connection pool managed by Supabase Storage',
+          tooltip: 'Connection pool managed by NicerBase Storage',
         },
         {
           attribute: 'client_connections_other',

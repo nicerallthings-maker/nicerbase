@@ -121,7 +121,7 @@ export const ComputeInstanceLogsTab = ({ instanceName, stream }: ComputeInstance
               <div className="mx-auto max-w-md space-y-3 py-16 text-center">
                 <p className="text-sm text-foreground">No {label} in the selected time range</p>
                 <p className="text-sm text-foreground-lighter">
-                  Follow them from the Supabase CLI while you wait for traffic.
+                  Follow them from the NicerBase CLI while you wait for traffic.
                 </p>
                 <div className="pt-1 text-left">
                   <ComputeInstanceCommandLine

@@ -636,7 +636,7 @@ describe('SupportFormPage', () => {
       screen.getByText('We are investigating this issue. Follow the status page for updates.')
     ).toBeInTheDocument()
 
-    expect(screen.queryByText('Try Supabase Assistant')).not.toBeInTheDocument()
+    expect(screen.queryByText('Try NicerBase Assistant')).not.toBeInTheDocument()
   })
 
   test('loading with initial params prefills the organization and project', async () => {
@@ -743,7 +743,7 @@ describe('SupportFormPage', () => {
     })
 
     await fillField(getSummaryField(screen), 'Cannot access my account')
-    await fillField(getMessageField(screen), 'I need help accessing my Supabase account')
+    await fillField(getMessageField(screen), 'I need help accessing my NicerBase account')
 
     await userEvent.click(getSubmitButton(screen))
 
@@ -1289,7 +1289,7 @@ describe('SupportFormPage', () => {
     renderSupportFormPage()
 
     await waitFor(() => {
-      expect(screen.getByText('Try Supabase Assistant')).toBeInTheDocument()
+      expect(screen.getByText('Try NicerBase Assistant')).toBeInTheDocument()
     })
   })
 
@@ -1939,7 +1939,7 @@ describe('SupportFormPage', () => {
     expect(getSupportAccessToggle(screen, 'query')).not.toBeInTheDocument()
 
     await fillField(getSummaryField(screen), 'Cannot access my account')
-    await fillField(getMessageField(screen), 'I need help accessing my Supabase account')
+    await fillField(getMessageField(screen), 'I need help accessing my NicerBase account')
 
     await userEvent.click(getSubmitButton(screen))
 
@@ -1959,7 +1959,7 @@ describe('SupportFormPage', () => {
       browserInformation: 'Chrome',
       dashboardStudioVersion: mockStudioVersion,
     })
-    expect(payload.message).toBe('I need help accessing my Supabase account')
+    expect(payload.message).toBe('I need help accessing my NicerBase account')
 
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: /support request sent/i })).toBeInTheDocument()

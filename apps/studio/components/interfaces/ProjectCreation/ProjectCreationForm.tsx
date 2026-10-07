@@ -745,7 +745,7 @@ export const ProjectCreationForm = ({
                           description={
                             <>
                               Ideal for agent-first workflows. Update your schema in code and push
-                              it to GitHub. Supabase deploys the changes.{' '}
+                              it to GitHub. NicerBase deploys the changes.{' '}
                               <a
                                 href="https://supabase.com/docs/guides/deployment/branching/github-integration"
                                 target="_blank"

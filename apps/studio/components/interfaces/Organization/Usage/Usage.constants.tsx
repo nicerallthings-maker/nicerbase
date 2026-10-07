@@ -185,7 +185,7 @@ export const USAGE_CATEGORIES: (subscription?: OrgSubscription) => CategoryMeta[
       chartPrefix: 'Average',
       unit: 'bytes',
       description:
-        "Each Supabase project comes with a dedicated disk. Each project gets 8 GB of disk for free. Billing is based on the provisioned disk size. Disk automatically scales up when you get close to it's size.\nEach hour your project is using more than 8 GB of GP3 disk, it incurs the overages in GB-Hrs, i.e. a 16 GB disk incurs 8 GB-Hrs every hour. Extra disk size costs $0.125/GB/month ($0.000171/GB-Hr).",
+        "Each NicerBase project comes with a dedicated disk. Each project gets 8 GB of disk for free. Billing is based on the provisioned disk size. Disk automatically scales up when you get close to it's size.\nEach hour your project is using more than 8 GB of GP3 disk, it incurs the overages in GB-Hrs, i.e. a 16 GB disk incurs 8 GB-Hrs every hour. Extra disk size costs $0.125/GB/month ($0.000171/GB-Hr).",
       links: [
         {
           name: 'Documentation',
@@ -393,8 +393,8 @@ export const USAGE_CATEGORIES: (subscription?: OrgSubscription) => CategoryMeta[
           unit: 'bytes',
           description:
             subscription?.plan.id === 'platform'
-              ? "Total volume of log data that Supabase ingests across all your project's services (Postgres, API gateway, Auth, Storage, Realtime, Edge Functions, and others) during the billing cycle."
-              : "Total volume of log data that Supabase ingests across all your project's services (Postgres, API gateway, Auth, Storage, Realtime, Edge Functions, and others) during the billing cycle.\nBilling starts after the grace period ends at the start of 2027.",
+              ? "Total volume of log data that NicerBase ingests across all your project's services (Postgres, API gateway, Auth, Storage, Realtime, Edge Functions, and others) during the billing cycle."
+              : "Total volume of log data that NicerBase ingests across all your project's services (Postgres, API gateway, Auth, Storage, Realtime, Edge Functions, and others) during the billing cycle.\nBilling starts after the grace period ends at the start of 2027.",
           chartDescription: 'The data refreshes every hour.',
           links: [
             {

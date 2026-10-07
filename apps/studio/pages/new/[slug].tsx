@@ -13,7 +13,7 @@ const Wizard: NextPageWithLayout = () => {
   const { appTitle } = useCustomContent(['app:title'])
   const pageTitle = buildStudioPageTitle({
     section: 'New Project',
-    brand: appTitle || 'Supabase',
+    brand: appTitle || 'NicerBase',
   })
 
   return (
@@ -21,7 +21,7 @@ const Wizard: NextPageWithLayout = () => {
       {/* Wizard layouts set the visual header but not the browser tab title. */}
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content="Supabase Studio" />
+        <meta name="description" content="NicerBase Studio" />
       </Head>
       <ProjectCreationForm />
     </>

@@ -201,7 +201,7 @@ function DirectConnectionContent({ state, deploymentMode }: StepContentProps) {
           >
             configurable
           </InlineLink>{' '}
-          for self-hosted Supabase.
+          for self-hosted NicerBase.
         </p>
       )}
       <ConnectionParameters

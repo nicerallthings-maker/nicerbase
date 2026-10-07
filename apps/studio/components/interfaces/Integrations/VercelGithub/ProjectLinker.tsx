@@ -141,9 +141,9 @@ export const ProjectLinker = ({
           </div>
         ) : (
           <>
-            <section className="space-y-2" aria-label="Supabase project">
+            <section className="space-y-2" aria-label="NicerBase project">
               <p className="text-xs font-medium uppercase tracking-wider text-foreground-light">
-                Supabase project
+                NicerBase project
               </p>
               <SupabaseProjectSelector
                 open={openProjectsDropdown}
@@ -227,7 +227,7 @@ export const ProjectLinker = ({
           <div className="flex justify-center gap-0 w-full relative">
             <Panel>
               <div className="bg-white shadow-sm border rounded-sm p-1 w-12 h-12 flex justify-center items-center">
-                <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-6" />
+                <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="NicerBase" className="w-6" />
               </div>
 
               <SupabaseProjectSelector

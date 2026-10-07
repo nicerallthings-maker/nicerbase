@@ -948,7 +948,7 @@ create policy "Anyone can upload an avatar." on storage.objects
     id: 16,
     type: 'quickstart',
     title: 'NextAuth Schema Setup',
-    description: 'Sets up a the Schema and Tables for the NextAuth Supabase Adapter.',
+    description: 'Sets up a the Schema and Tables for the NextAuth NicerBase Adapter.',
     sql: `
 --
 -- Name: next_auth; Type: SCHEMA;

@@ -34,7 +34,7 @@ export const ExplorerPreview = () => {
         Notebooks aim to replace Snippets and Custom Reports. They can contain one or many SQL
         queries with surrounding markdown content. You can query both your own database and project
         logs which means they can be used for observability, growth tracking, recurring tasks that
-        need extra context etc. They can be managed and run in Studio as well as by the Supabase
+        need extra context etc. They can be managed and run in Studio as well as by the NicerBase
         Assistant and later your own agent via code or MCP. Snippets are <em>not</em> visible in
         Explorer, we are instead looking at a migration path from Snippets -&gt; Notebooks if
         needed.

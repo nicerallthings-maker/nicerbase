@@ -28,8 +28,8 @@ const JWTSigningKeysPage: NextPageWithLayout = () => {
             variant="cli"
             body={
               <p>
-                The asymmetric key pair used to sign user session JWTs is configured by the Supabase
-                CLI.
+                The asymmetric key pair used to sign user session JWTs is configured by the
+                NicerBase CLI.
               </p>
             }
             docsHref={`${DOCS_URL}/guides/local-development`}

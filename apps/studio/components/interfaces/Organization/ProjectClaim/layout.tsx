@@ -18,10 +18,10 @@ export const ProjectClaimLayout = ({
     <>
       <div className="flex flex-row justify-between mx-auto w-full h-[52px] items-center px-4">
         <div className="flex items-center gap-2">
-          <span className="sr-only">Supabase</span>
+          <span className="sr-only">NicerBase</span>
           <Image
             src={`${BASE_PATH}/img/supabase-logo.svg`}
-            alt="Supabase Logo"
+            alt="NicerBase Logo"
             height={20}
             width={20}
           />

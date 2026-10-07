@@ -123,8 +123,8 @@ export function McpConfigPanel() {
   return (
     <>
       <paragraph>
-        The hosted Supabase MCP server is available at <inlineCode value={HOSTED_URL} />. If
-        you&apos;re developing locally with the Supabase CLI, use <inlineCode value={LOCAL_URL} />{' '}
+        The hosted NicerBase MCP server is available at <inlineCode value={HOSTED_URL} />. If
+        you&apos;re developing locally with the NicerBase CLI, use <inlineCode value={LOCAL_URL} />{' '}
         instead.
       </paragraph>
       <paragraph>

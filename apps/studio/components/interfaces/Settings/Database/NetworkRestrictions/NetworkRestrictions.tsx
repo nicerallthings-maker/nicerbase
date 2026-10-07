@@ -277,7 +277,7 @@ export const NetworkRestrictions = () => {
                           project's database.
                         </p>
                         <p className="text-foreground-light text-sm">
-                          Note: Restrictions only apply to your database, and not to Supabase
+                          Note: Restrictions only apply to your database, and not to NicerBase
                           services
                         </p>
                       </div>
@@ -300,7 +300,7 @@ export const NetworkRestrictions = () => {
                           your database.
                         </p>
                         <p>
-                          Note: Restrictions only apply to your database, and not to Supabase
+                          Note: Restrictions only apply to your database, and not to NicerBase
                           services
                         </p>
                       </CardDescription>

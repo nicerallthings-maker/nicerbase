@@ -153,7 +153,7 @@ export function SupportFormStatusButton() {
         </Button>
       </TooltipTrigger>
       <TooltipContent side="bottom" align="center">
-        Check the Supabase status page
+        Check the NicerBase status page
       </TooltipContent>
     </Tooltip>
   )

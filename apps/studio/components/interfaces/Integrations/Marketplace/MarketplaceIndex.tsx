@@ -224,7 +224,7 @@ export const MarketplaceIndex = () => {
           <PageHeaderSummary>
             <PageHeaderTitle>{pageTitle}</PageHeaderTitle>
             <PageHeaderDescription>
-              Explore native and third-party integrations to add functionality to your Supabase
+              Explore native and third-party integrations to add functionality to your NicerBase
               project.
             </PageHeaderDescription>
           </PageHeaderSummary>

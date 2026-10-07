@@ -394,7 +394,7 @@ export const getFallbackTools = ({
       },
     }),
     getEdgeFunctionKnowledge: tool({
-      description: 'Get knowledge about how to write edge functions for Supabase',
+      description: 'Get knowledge about how to write edge functions for NicerBase',
       inputSchema: z.object({}),
       execute: async ({}) => {
         return stripIndent`

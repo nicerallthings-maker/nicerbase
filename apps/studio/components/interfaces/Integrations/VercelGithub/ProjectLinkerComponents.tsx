@@ -180,7 +180,7 @@ export const SupabaseProjectSelector = ({
             <div className="flex items-center gap-x-2">
               {variant === 'default' && (
                 <div className="bg-white shadow-sm border rounded-sm p-1 w-6 h-6 flex justify-center items-center">
-                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-4" />
+                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="NicerBase" className="w-4" />
                 </div>
               )}
               <p>{project.name}</p>
@@ -209,11 +209,13 @@ export const SupabaseProjectSelector = ({
             <div className="flex items-center gap-x-2">
               {variant === 'default' && (
                 <div className="bg-white shadow-sm border rounded-sm p-1 w-6 h-6 flex justify-center items-center">
-                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="Supabase" className="w-4" />
+                  <img src={`${BASE_PATH}/img/supabase-logo.svg`} alt="NicerBase" className="w-4" />
                 </div>
               )}
               <span className="truncate">
-                {selectedSupabaseProject ? selectedSupabaseProject.name : 'Choose Supabase project'}
+                {selectedSupabaseProject
+                  ? selectedSupabaseProject.name
+                  : 'Choose NicerBase project'}
               </span>
             </div>
           </Button>

@@ -81,21 +81,22 @@ const frameworkNextJsFilesStep: StepDefinition = {
   id: 'configure-nextjs',
   title: 'Add files',
   description:
-    'Add env variables, create Supabase client helpers, and set up middleware to keep sessions refreshed.',
+    'Add env variables, create NicerBase client helpers, and set up middleware to keep sessions refreshed.',
   content: '{{framework}}/{{frameworkVariant}}/{{library}}',
 }
 
 const frameworkReactFilesStep: StepDefinition = {
   id: 'configure-react',
   title: 'Add files',
-  description: 'Add env variables, create a Supabase client, and use it in your app to query data.',
+  description:
+    'Add env variables, create a NicerBase client, and use it in your app to query data.',
   content: '{{framework}}/{{frameworkVariant}}/{{library}}',
 }
 
 const frameworkShadcnStep: StepDefinition = {
   id: 'shadcn-add',
-  title: 'Add Supabase Library blocks',
-  description: 'Install Supabase Library blocks via the shadcn registry.',
+  title: 'Add NicerBase Library blocks',
+  description: 'Install NicerBase Library blocks via the shadcn registry.',
   content: 'steps/shadcn/command',
 }
 
@@ -137,7 +138,7 @@ const mcpConfigureStep: StepDefinition = {
 // Codex-specific MCP steps
 const codexAddServerStep: StepDefinition = {
   id: 'codex-add-server',
-  title: 'Add the Supabase MCP server to Codex',
+  title: 'Add the NicerBase MCP server to Codex',
   description: 'Run this command to add the server.',
   content: 'steps/mcp/codex/add-server',
 }
@@ -205,13 +206,13 @@ const skillsInstallStep: StepDefinition = {
   title: 'Install Agent Skills',
   optional: true,
   description:
-    'Agent Skills give AI coding tools ready-made instructions, scripts, and resources for working with Supabase more accurately and efficiently.',
+    'Agent Skills give AI coding tools ready-made instructions, scripts, and resources for working with NicerBase more accurately and efficiently.',
   content: 'steps/skills-install',
 }
 
 const serverSkillsInstallStep: StepDefinition = {
   id: 'install-skills',
-  title: 'Install the Supabase Server skill',
+  title: 'Install the NicerBase Server skill',
   optional: true,
   description: 'Give AI coding tools instructions for building APIs with @supabase/server.',
   content: 'steps/skills-install',
@@ -332,7 +333,7 @@ export const connectSchema: ConnectSchema = {
       id: 'frameworkUi',
       type: 'switch',
       label: 'Shadcn',
-      description: 'Install Supabase Library blocks with shadcn.',
+      description: 'Install NicerBase Library blocks with shadcn.',
       defaultValue: false,
       dependsOn: { framework: ['nextjs', 'react'] },
     },

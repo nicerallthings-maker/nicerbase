@@ -1,6 +1,6 @@
 export const PIPELINE_NAME_FIELD_COPY = {
   label: 'Pipeline name',
-  description: 'Used to identify this pipeline in Supabase.',
+  description: 'Used to identify this pipeline in NicerBase.',
 } as const
 
 export const BIGQUERY_PROJECT_ID_FIELD_COPY = {
@@ -30,7 +30,7 @@ export const DUCKLAKE_CATALOG_PROJECT_FIELD_COPY = {
 
 export const DUCKLAKE_STORAGE_PROJECT_FIELD_COPY = {
   label: 'Storage project',
-  description: 'Supabase project that stores the DuckLake data files.',
+  description: 'NicerBase project that stores the DuckLake data files.',
 } as const
 
 export const DUCKLAKE_BUCKET_FIELD_COPY = {

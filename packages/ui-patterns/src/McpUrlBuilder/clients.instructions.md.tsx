@@ -74,7 +74,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
   codex: {
     primary: ({ url }) => (
       <>
-        <paragraph>Add the Supabase MCP server to Codex:</paragraph>
+        <paragraph>Add the NicerBase MCP server to Codex:</paragraph>
         <code lang="bash" value={MCP_CLI_COMMANDS['codex'].install!(url)} />
       </>
     ),
@@ -91,7 +91,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
   grok: {
     primary: ({ url }) => (
       <>
-        <paragraph>Add the Supabase MCP server to Grok:</paragraph>
+        <paragraph>Add the NicerBase MCP server to Grok:</paragraph>
         <code lang="bash" value={MCP_CLI_COMMANDS['grok'].install!(url)} />
       </>
     ),
@@ -100,7 +100,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
         <paragraph>
           The command writes the server to your user config (
           <inlineCode value="~/.grok/config.toml" />
-          ), making it available across all your projects. Start Grok and complete the Supabase
+          ), making it available across all your projects. Start Grok and complete the NicerBase
           OAuth flow when prompted on first use.
         </paragraph>
         <paragraph>
@@ -124,7 +124,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
           running:
         </paragraph>
         <code lang="bash" value="/mcp" />
-        <paragraph>To configure MCP servers and complete the Supabase OAuth login, run:</paragraph>
+        <paragraph>To configure MCP servers and complete the NicerBase OAuth login, run:</paragraph>
         <code lang="bash" value="/mcp-config" />
       </>
     ),
@@ -140,8 +140,8 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
         {isPlatform ? (
           <>
             <paragraph>
-              Install the Supabase <link url={GEMINI_EXTENSION_URL}>extension</link> for Gemini CLI.
-              This bundles the Supabase MCP server connection,{' '}
+              Install the NicerBase <link url={GEMINI_EXTENSION_URL}>extension</link> for Gemini
+              CLI. This bundles the NicerBase MCP server connection,{' '}
               <link url="https://github.com/supabase/agent-skills">agent skills</link>, and other
               context.
             </paragraph>
@@ -149,7 +149,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
             <paragraph>Or add just the MCP server to Gemini CLI:</paragraph>
           </>
         ) : (
-          <paragraph>Add the Supabase MCP server to Gemini CLI:</paragraph>
+          <paragraph>Add the NicerBase MCP server to Gemini CLI:</paragraph>
         )}
         <code lang="bash" value={MCP_CLI_COMMANDS['gemini-cli'].install!(url)} />
       </>
@@ -188,7 +188,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
       <>
         <paragraph>
           After saving the config, restart Antigravity. It will prompt you to complete the OAuth
-          flow to authenticate with Supabase.
+          flow to authenticate with NicerBase.
         </paragraph>
         <paragraph>
           To edit the config from within Antigravity, click the <strong>···</strong> menu at the top
@@ -201,11 +201,11 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
           If you run into authentication issues, open Agent Settings with <strong>Cmd+,</strong>{' '}
           (Mac) or <strong>Ctrl+,</strong> (Windows/Linux), navigate to the{' '}
           <strong>Customizations</strong> tab, and click the <strong>Authenticate</strong> button
-          next to the Supabase server.
+          next to the NicerBase server.
         </paragraph>
         <image
           url="antigravity-auth"
-          alt="Antigravity MCP server settings showing the Authenticate button next to the Supabase server"
+          alt="Antigravity MCP server settings showing the Authenticate button next to the NicerBase server"
         />
       </>
     ),
@@ -213,7 +213,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
   goose: {
     primary: ({ url }) => (
       <>
-        <paragraph>Start a Goose session with the Supabase extension:</paragraph>
+        <paragraph>Start a Goose session with the NicerBase extension:</paragraph>
         <code lang="bash" value={MCP_CLI_COMMANDS['goose'].install!(url)} />
       </>
     ),
@@ -230,7 +230,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
   factory: {
     primary: ({ url }) => (
       <>
-        <paragraph>Add Supabase MCP server to Factory:</paragraph>
+        <paragraph>Add NicerBase MCP server to Factory:</paragraph>
         <code lang="bash" value={MCP_CLI_COMMANDS['factory'].install!(url)} />
       </>
     ),
@@ -291,7 +291,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
         </paragraph>
         <paragraph>Approve the server locally:</paragraph>
         <code lang="bash" value="agent mcp enable supabase" />
-        <paragraph>Authenticate with Supabase:</paragraph>
+        <paragraph>Authenticate with NicerBase:</paragraph>
         <code lang="bash" value={MCP_CLI_COMMANDS['cursor'].authenticate!} />
         <paragraph>Check the server connection status:</paragraph>
         <code lang="bash" value="agent mcp list" />
@@ -302,7 +302,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
     primary: () => (
       <>
         <paragraph>
-          Start <inlineCode value="omp" /> and add the Supabase MCP server with the guided setup:
+          Start <inlineCode value="omp" /> and add the NicerBase MCP server with the guided setup:
         </paragraph>
         <code lang="bash" value="/mcp add" />
       </>
@@ -315,7 +315,7 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
         </paragraph>
         <paragraph>
           If a session is already open, pick up the change with <inlineCode value="/mcp reload" />.
-          omp opens your browser to complete the Supabase OAuth flow the first time it connects.
+          omp opens your browser to complete the NicerBase OAuth flow the first time it connects.
         </paragraph>
         <paragraph>
           Confirm the server is connected with <inlineCode value="/mcp list" />, or authorize again
@@ -327,8 +327,8 @@ export const MCP_CLIENT_INSTRUCTIONS: Record<string, McpClientInstructions> = {
   kiro: {
     deepLinkDescription: (
       <paragraph>
-        Install the Supabase <link url="https://kiro.dev/docs/powers/">power</link> for Kiro. This
-        bundles the Supabase MCP server and steering files for best practices.
+        Install the NicerBase <link url="https://kiro.dev/docs/powers/">power</link> for Kiro. This
+        bundles the NicerBase MCP server and steering files for best practices.
       </paragraph>
     ),
   },

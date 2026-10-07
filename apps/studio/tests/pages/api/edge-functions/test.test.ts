@@ -125,7 +125,7 @@ describe('/api/edge-functions/test', () => {
     expect(res._getStatusCode()).toBe(400)
     expect(JSON.parse(res._getData())).toEqual({
       status: 400,
-      error: { message: 'Provided URL is not a valid Supabase edge function URL' },
+      error: { message: 'Provided URL is not a valid NicerBase edge function URL' },
     })
   })
 

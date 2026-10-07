@@ -9,7 +9,7 @@ import {
   Storage,
   TableEditor,
 } from 'icons'
-import { Blocks, Lightbulb, List, Settings, Telescope } from 'lucide-react'
+import { Blocks, Leaf, Lightbulb, List, Settings, Telescope } from 'lucide-react'
 
 import {
   useIsExplorerEnabled,
@@ -126,6 +126,13 @@ export const generateProductRoutes = (
             ? `/project/${ref}/database/schemas`
             : `/project/${ref}/database/backups/scheduled`),
       shortcutId: SHORTCUT_IDS.NAV_DATABASE,
+    },
+    {
+      key: 'mongodb',
+      label: 'MongoDB',
+      disabled: !isProjectActive,
+      icon: <Leaf size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/mongodb`),
     },
     ...(authEnabled
       ? [

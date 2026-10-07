@@ -285,7 +285,7 @@ describe('RealtimeSettings', () => {
     customRender(<RealtimeSettings />)
 
     expect(
-      await screen.findByText('Supabase has suspended Realtime for this project')
+      await screen.findByText('NicerBase has suspended Realtime for this project')
     ).toBeInTheDocument()
   })
 
@@ -294,7 +294,7 @@ describe('RealtimeSettings', () => {
 
     await screen.findByLabelText('Postgres Changes connection pool size')
     expect(
-      screen.queryByText('Supabase has suspended Realtime for this project')
+      screen.queryByText('NicerBase has suspended Realtime for this project')
     ).not.toBeInTheDocument()
   })
 })

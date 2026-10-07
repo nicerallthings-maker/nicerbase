@@ -139,7 +139,7 @@ function SupportFormHeader() {
     <div className="flex flex-col items-start justify-between gap-y-2 sm:flex-row sm:items-center">
       <div className="flex items-center space-x-3">
         <SVG src={`${BASE_PATH}/img/supabase-logo.svg`} className="h-4 w-4" />
-        <h3 className="m-0 text-lg">Supabase support</h3>
+        <h3 className="m-0 text-lg">NicerBase support</h3>
       </div>
 
       <div className="flex items-center gap-x-3">
@@ -175,7 +175,7 @@ function SupportFormHeader() {
             </Button>
           </TooltipTrigger>
           <TooltipContent side="bottom" align="center">
-            Check the Supabase status page
+            Check the NicerBase status page
           </TooltipContent>
         </Tooltip>
       </div>

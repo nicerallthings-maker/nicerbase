@@ -15,7 +15,7 @@ export const AUTH_ERROR_CODES = {
   },
   bad_oauth_state: {
     description:
-      'OAuth state (data echoed back by the OAuth provider to Supabase Auth) is not in the correct format. Indicates an issue with the OAuth provider integration.',
+      'OAuth state (data echoed back by the OAuth provider to NicerBase Auth) is not in the correct format. Indicates an issue with the OAuth provider integration.',
   },
   captcha_failed: {
     description:

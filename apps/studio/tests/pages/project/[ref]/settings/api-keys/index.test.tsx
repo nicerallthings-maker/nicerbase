@@ -88,8 +88,8 @@ describe('/project/[ref]/settings/api-keys', () => {
     expect(screen.getByText('SecretAPIKeys')).toBeInTheDocument()
     expect(screen.getByText('ApiKeysFeedbackBanner')).toBeInTheDocument()
     expect(screen.queryByText('ApiKeysCreateCallout')).not.toBeInTheDocument()
-    expect(screen.queryByText(/Local development with the Supabase CLI/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/Self-hosted Supabase/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Local development with the NicerBase CLI/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Self-hosted NicerBase/i)).not.toBeInTheDocument()
   })
 
   it('renders the create callout on platform when no new keys exist', () => {
@@ -111,8 +111,8 @@ describe('/project/[ref]/settings/api-keys', () => {
 
     render(<ApiKeysPage dehydratedState={{}} />)
 
-    expect(screen.getByText(/Local development with the Supabase CLI/i)).toBeInTheDocument()
-    expect(screen.queryByText(/Self-hosted Supabase/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/Local development with the NicerBase CLI/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Self-hosted NicerBase/i)).not.toBeInTheDocument()
     expect(screen.getByText('PublishableAPIKeys')).toBeInTheDocument()
     expect(screen.getByText('SecretAPIKeys')).toBeInTheDocument()
     expect(screen.queryByText('ApiKeysCreateCallout')).not.toBeInTheDocument()
@@ -129,8 +129,8 @@ describe('/project/[ref]/settings/api-keys', () => {
 
     render(<ApiKeysPage dehydratedState={{}} />)
 
-    expect(screen.getByText(/Self-hosted Supabase/i)).toBeInTheDocument()
-    expect(screen.queryByText(/Local development with the Supabase CLI/i)).not.toBeInTheDocument()
+    expect(screen.getByText(/Self-hosted NicerBase/i)).toBeInTheDocument()
+    expect(screen.queryByText(/Local development with the NicerBase CLI/i)).not.toBeInTheDocument()
     expect(screen.getByText('PublishableAPIKeys')).toBeInTheDocument()
     expect(screen.getByText('SecretAPIKeys')).toBeInTheDocument()
     expect(screen.queryByText('ApiKeysCreateCallout')).not.toBeInTheDocument()

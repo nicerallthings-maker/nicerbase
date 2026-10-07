@@ -199,7 +199,7 @@ configureMonacoLoader()
 // option isn't a React component and can't run the async CLI check _app does).
 const FAVICON_ROUTE = IS_NON_PROD_ENV ? '/favicon/staging' : '/favicon'
 const THEME_COLOR = '1E1E1E'
-const APPLICATION_NAME = 'Supabase Studio'
+const APPLICATION_NAME = 'NicerBase Studio'
 
 const APPLE_TOUCH_ICON_SIZES = [
   '57x57',
@@ -249,7 +249,7 @@ function buildRootHead() {
       content: `${BASE_PATH}${FAVICON_ROUTE}/mstile-310x310.png`,
     },
     { name: 'theme-color', content: `#${THEME_COLOR}` },
-    { title: 'Supabase' },
+    { title: 'NicerBase' },
   ]
 
   const links: Array<Record<string, string>> = [

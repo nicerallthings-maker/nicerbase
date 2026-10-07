@@ -7,7 +7,7 @@ import { IS_PLATFORM } from '@/lib/constants'
 import { buildStudioPageTitle } from '@/lib/page-title'
 import type { NextPageWithLayout } from '@/types'
 
-const PAGE_TITLE = buildStudioPageTitle({ section: 'Stripe Atlas Application', brand: 'Supabase' })
+const PAGE_TITLE = buildStudioPageTitle({ section: 'Stripe Atlas Application', brand: 'NicerBase' })
 
 /**
  * Page needs to be pre-auth – customers will be redirected here from the

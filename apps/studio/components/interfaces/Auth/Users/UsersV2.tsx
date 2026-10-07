@@ -1000,7 +1000,7 @@ export const UsersV2 = () => {
             >
               project logs
             </InlineLink>
-            . If you encounter any issues, please contact Supabase support for assistance.
+            . If you encounter any issues, please contact NicerBase support for assistance.
           </li>
         </ul>
       </ConfirmationModal>

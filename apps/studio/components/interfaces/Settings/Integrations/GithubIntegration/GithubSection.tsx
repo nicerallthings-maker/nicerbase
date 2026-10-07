@@ -173,7 +173,7 @@ export const GitHubSection = ({ isProjectScoped }: { isProjectScoped: boolean })
 
             {gitHubAuthorization && (
               <p className="text-sm text-foreground-light">
-                You are authorized with the Supabase GitHub app. You can configure your{' '}
+                You are authorized with the NicerBase GitHub app. You can configure your{' '}
                 <InlineLink href={GITHUB_INTEGRATION_INSTALLATION_URL}>
                   GitHub App installations and repository access
                 </InlineLink>
