@@ -171,11 +171,8 @@ function isSameOrigin(req: IncomingMessage) {
 
 function clientIp(req: IncomingMessage) {
   const forwarded = req.headers['x-forwarded-for']
-  return (
-    (typeof forwarded === 'string' ? forwarded.split(',')[0].trim() : undefined) ??
-    req.socket.remoteAddress ??
-    'unknown'
-  )
+  if (config.trustProxy && typeof forwarded === 'string') return forwarded.split(',')[0].trim()
+  return req.socket.remoteAddress ?? 'unknown'
 }
 
 async function serveStatic(ctx: Context) {

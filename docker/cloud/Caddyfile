@@ -1,0 +1,11 @@
+# NicerBase Cloud: HTTPS reverse proxy. Caddy obtains and renews a Let's Encrypt
+# certificate automatically for NICERBASE_DOMAIN (its DNS must point at this server
+# and ports 80/443 must be reachable).
+{$NICERBASE_DOMAIN} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		-Server
+	}
+	reverse_proxy cloud:4000
+}

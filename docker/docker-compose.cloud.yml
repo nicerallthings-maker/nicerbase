@@ -36,6 +36,9 @@ services:
       NICERBASE_MONGODB_PUBLIC_HOST: ${NICERBASE_MONGODB_PUBLIC_HOST:-localhost}
       NICERBASE_MONGODB_PUBLIC_PORT: ${TENANT_MONGODB_PORT:-27017}
       NICERBASE_MAX_PROJECTS_PER_USER: ${NICERBASE_MAX_PROJECTS_PER_USER:-5}
+      NICERBASE_SMTP_URL: ${NICERBASE_SMTP_URL:-}
+      NICERBASE_MAIL_FROM: ${NICERBASE_MAIL_FROM:-NicerBase <no-reply@localhost>}
+      NICERBASE_REQUIRE_EMAIL_VERIFICATION: ${NICERBASE_REQUIRE_EMAIL_VERIFICATION:-}
 
   tenant-postgres:
     image: postgres:17
@@ -72,6 +75,43 @@ services:
       - ${TENANT_MONGODB_PORT:-27017}:27017
     volumes:
       - nicerbase-tenant-mongodb:/data/db
+
+  # Daily dumps of every tenant database and the control plane, kept for
+  # BACKUP_RETENTION_DAYS in docker/volumes/cloud-backups.
+  # Restore one Postgres project:
+  #   pg_restore --clean -d <nb_ref> volumes/cloud-backups/postgres/<stamp>/postgres/<nb_ref>.dump
+  # Restore one MongoDB project:
+  #   mongorestore --gzip --archive=volumes/cloud-backups/mongodb/<stamp>/mongodb.archive.gz --nsInclude='nb_<ref>.*'
+  backup-postgres:
+    image: postgres:17
+    restart: unless-stopped
+    depends_on:
+      tenant-postgres:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/backup.sh', 'postgres']
+    environment:
+      TENANT_POSTGRES_PASSWORD: ${TENANT_POSTGRES_PASSWORD}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./cloud/backup.sh:/backup.sh:ro
+      - ./volumes/cloud-backups:/backups
+
+  backup-mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    depends_on:
+      tenant-mongodb:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/backup.sh', 'mongodb']
+    environment:
+      TENANT_MONGODB_USER: ${TENANT_MONGODB_USER:-nicerbase}
+      TENANT_MONGODB_PASSWORD: ${TENANT_MONGODB_PASSWORD}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./cloud/backup.sh:/backup.sh:ro
+      - ./volumes/cloud-backups:/backups
 
 volumes:
   nicerbase-tenant-postgres:

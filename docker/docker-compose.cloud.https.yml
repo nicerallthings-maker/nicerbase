@@ -1,0 +1,32 @@
+# NicerBase Cloud: serve the console over HTTPS with automatic certificates.
+#
+# Usage (set NICERBASE_DOMAIN=console.example.com and
+# NICERBASE_PUBLIC_URL=https://console.example.com in .env.cloud first):
+#   docker compose -f docker-compose.cloud.yml -f docker-compose.cloud.https.yml --env-file .env.cloud up -d --build
+
+services:
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      - cloud
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    environment:
+      NICERBASE_DOMAIN: ${NICERBASE_DOMAIN:?set NICERBASE_DOMAIN}
+    volumes:
+      - ./cloud/Caddyfile:/etc/caddy/Caddyfile:ro
+      - nicerbase-caddy-data:/data
+      - nicerbase-caddy-config:/config
+
+  cloud:
+    # Only reachable through the proxy.
+    ports: !reset []
+    environment:
+      NICERBASE_TRUST_PROXY: 'true'
+
+volumes:
+  nicerbase-caddy-data:
+  nicerbase-caddy-config:
