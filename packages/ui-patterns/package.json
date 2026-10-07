@@ -822,7 +822,7 @@
     "@vitest/coverage-v8": "catalog:",
     "api-types": "workspace:*",
     "config": "workspace:*",
-    "next-router-mock": "^0.9.13",
+    "next-router-mock": "^1.0.5",
     "tailwindcss": "^4.2.4",
     "tsx": "catalog:",
     "typescript": "catalog:",
