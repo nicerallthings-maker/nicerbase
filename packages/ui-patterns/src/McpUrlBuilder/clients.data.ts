@@ -24,7 +24,7 @@ export const FEATURE_GROUPS_PLATFORM: McpFeatureGroup[] = [
   {
     id: 'docs',
     name: 'Documentation',
-    description: 'Access Supabase documentation and guides',
+    description: 'Access NicerBase documentation and guides',
   },
   {
     id: 'account',
@@ -285,7 +285,7 @@ export const MCP_CLIENT_DATA: McpClientData[] = [
             available_tools: [],
             bundled: null,
             description:
-              'Connect your Supabase projects to AI assistants. Manage tables, query data, deploy Edge Functions, and interact with your Supabase backend directly from your MCP client.',
+              'Connect your NicerBase projects to AI assistants. Manage tables, query data, deploy Edge Functions, and interact with your NicerBase backend directly from your MCP client.',
             enabled: true,
             env_keys: [],
             envs: {},
@@ -499,5 +499,5 @@ export const HOSTED_MCP_URL = 'https://mcp.supabase.com/mcp'
  */
 export const MCP_HOSTED_AUTH_NOTE = {
   title: 'Authentication',
-  body: "Some MCP clients automatically prompt you to log in during setup. Others require manual authentication steps. Either method opens a browser window where you log in to your Supabase account and grant the MCP client access to your organization. You don't need a personal access token (PAT).",
+  body: "Some MCP clients automatically prompt you to log in during setup. Others require manual authentication steps. Either method opens a browser window where you log in to your NicerBase account and grant the MCP client access to your organization. You don't need a personal access token (PAT).",
 } as const

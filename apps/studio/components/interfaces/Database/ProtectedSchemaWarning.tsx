@@ -18,12 +18,12 @@ export const ProtectedSchemaDialog = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Schemas managed by Supabase</DialogTitle>
+        <DialogTitle>Schemas managed by NicerBase</DialogTitle>
       </DialogHeader>
       <DialogSectionSeparator />
       <DialogSection className="space-y-2 prose">
         <p className="text-sm">
-          The following schemas are managed by Supabase and are currently protected from write
+          The following schemas are managed by NicerBase and are currently protected from write
           access through the dashboard.
         </p>
         <div className="flex flex-wrap gap-1">
@@ -34,7 +34,7 @@ export const ProtectedSchemaDialog = ({ onClose }: { onClose: () => void }) => {
           ))}
         </div>
         <p className="text-sm mt-4!">
-          These schemas are critical to the functionality of your Supabase project and hence we
+          These schemas are critical to the functionality of your NicerBase project and hence we
           highly recommend not altering them.
         </p>
         <p className="text-sm">
@@ -79,18 +79,18 @@ export const ProtectedSchemaWarning = ({
       description={
         reason === 'fdw' && fdwType === 'iceberg' ? (
           <p>
-            The <code className="text-code-inline">{schema}</code> schema is used by Supabase to
+            The <code className="text-code-inline">{schema}</code> schema is used by NicerBase to
             connect to analytics buckets and is read-only through the dashboard.
           </p>
         ) : reason === 'fdw' && fdwType === 's3_vectors' ? (
           <p>
-            The <code className="text-code-inline">{schema}</code> schema is used by Supabase to
+            The <code className="text-code-inline">{schema}</code> schema is used by NicerBase to
             connect to vector buckets and is read-only through the dashboard.
           </p>
         ) : (
           <p>
-            The <code className="text-code-inline">{schema}</code> schema is managed by Supabase and
-            is read-only through the dashboard.
+            The <code className="text-code-inline">{schema}</code> schema is managed by NicerBase
+            and is read-only through the dashboard.
           </p>
         )
       }

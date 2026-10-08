@@ -33,7 +33,6 @@ const buttonVariants = cva(
         primary: `
           border-0
           bg-primary-solid
-          bg-[linear-gradient(to_bottom,hsl(var(--colors-white)/0.015),hsl(var(--colors-black)/0.01))]
           text-primary-solid-foreground
           shadow-[var(--button-shadow-raised)]
           hover:bg-[var(--primary-solid-hover)]

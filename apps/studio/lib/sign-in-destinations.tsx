@@ -20,7 +20,7 @@ export type SignInDestination = {
 
 const CLI_DESTINATION: SignInDestination = {
   id: 'cli',
-  displayName: 'Supabase CLI',
+  displayName: 'NicerBase CLI',
   icon: <Terminal className="size-6 text-foreground" strokeWidth={2} />,
 }
 

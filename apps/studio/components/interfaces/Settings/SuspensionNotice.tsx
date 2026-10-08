@@ -12,7 +12,7 @@ export const SuspensionNotice = ({ suspendedAt }: { suspendedAt?: string | null 
       layout="horizontal"
       className="mb-4"
       type="warning"
-      title="Supabase has suspended Realtime for this project"
+      title="NicerBase has suspended Realtime for this project"
       description={
         <>
           Suspended since{' '}

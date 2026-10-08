@@ -101,6 +101,6 @@ describe('gap lists', () => {
   it('PRO_PLAN_GAPS includes SOC2 and SSO as missing', () => {
     const missing = PRO_PLAN_GAPS.filter((g) => g.type === 'missing')
     expect(missing.map((g) => g.label)).toContain('SOC2 & ISO 27001')
-    expect(missing.map((g) => g.label)).toContain('SSO for Supabase Dashboard')
+    expect(missing.map((g) => g.label)).toContain('SSO for NicerBase Dashboard')
   })
 })

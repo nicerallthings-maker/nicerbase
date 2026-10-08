@@ -222,7 +222,7 @@ export const VercelSection = ({ isProjectScoped }: { isProjectScoped: boolean })
             {vercelProjectCount > 0 && vercelIntegration !== undefined && (
               <p className="text-sm text-foreground-light">
                 Your Vercel connection can access {vercelProjectCount} Vercel projects. To change
-                which projects Supabase may use, open your organization’s{' '}
+                which projects NicerBase may use, open your organization’s{' '}
                 <InlineLink href={getIntegrationConfigurationUrl(vercelIntegration)}>
                   Vercel integration settings
                 </InlineLink>

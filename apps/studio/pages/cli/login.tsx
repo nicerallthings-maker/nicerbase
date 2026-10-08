@@ -23,7 +23,7 @@ import { buildStudioPageTitle } from '@/lib/page-title'
 import { useProfile } from '@/lib/profile'
 import type { NextPageWithLayout } from '@/types'
 
-const PAGE_TITLE = buildStudioPageTitle({ section: 'Authorize CLI', brand: 'Supabase' })
+const PAGE_TITLE = buildStudioPageTitle({ section: 'Authorize CLI', brand: 'NicerBase' })
 
 const CliLogo = () => (
   <LogoBox className="bg-black">
@@ -197,12 +197,12 @@ export const CliLoginScreen = ({
     return (
       <CliLoginInterstitial
         title="Missing sign-in parameters"
-        description="This Supabase CLI sign-in request cannot be authorized"
+        description="This NicerBase CLI sign-in request cannot be authorized"
       >
         <div className="flex flex-col gap-3">
           <Admonition
             type="warning"
-            description={`Open the browser sign-in flow from Supabase CLI again. The URL is missing parameter${
+            description={`Open the browser sign-in flow from NicerBase CLI again. The URL is missing parameter${
               isPlural ? 's' : ''
             }: ${status.missingParameters.join(', ')}.`}
           />
@@ -218,14 +218,14 @@ export const CliLoginScreen = ({
     return (
       <CliLoginInterstitial
         title="Unable to create CLI sign-in"
-        description="Retry the sign-in command from Supabase CLI"
+        description="Retry the sign-in command from NicerBase CLI"
       >
         <div className="flex flex-col gap-3">
           <Admonition
             type="warning"
             description={
               <>
-                Supabase could not create the CLI sign-in session.
+                NicerBase could not create the CLI sign-in session.
                 {status.message && (
                   <span className="mt-1 block text-foreground-lighter">
                     Error: {status.message}
@@ -244,8 +244,8 @@ export const CliLoginScreen = ({
 
   return (
     <CliLoginInterstitial
-      title="Authorize Supabase CLI"
-      description="Enter this verification code in Supabase CLI to finish signing in"
+      title="Authorize NicerBase CLI"
+      description="Enter this verification code in NicerBase CLI to finish signing in"
     >
       <div className="flex flex-col gap-5">
         <div className="flex flex-col items-center gap-3">

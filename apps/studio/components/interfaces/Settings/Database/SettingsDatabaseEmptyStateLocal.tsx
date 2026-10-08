@@ -22,7 +22,7 @@ export function SettingsDatabaseEmptyStateLocal() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Self-Hosted Supabase</CardTitle>
+          <CardTitle>Self-Hosted NicerBase</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-foreground-light mb-4">

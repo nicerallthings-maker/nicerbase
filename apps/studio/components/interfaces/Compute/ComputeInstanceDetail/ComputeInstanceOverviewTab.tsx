@@ -240,7 +240,7 @@ export const ComputeInstanceOverviewTab = ({ instance }: ComputeInstanceOverview
           <PageSectionSummary>
             <PageSectionTitle>Develop locally</PageSectionTitle>
             <PageSectionDescription>
-              Manage this instance from the Supabase CLI.
+              Manage this instance from the NicerBase CLI.
             </PageSectionDescription>
           </PageSectionSummary>
         </PageSectionMeta>

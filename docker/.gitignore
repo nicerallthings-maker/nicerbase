@@ -14,3 +14,7 @@ test.http
 docker-compose.override.yml
 .supabase-version
 backups
+volumes/mongodb
+.env.cloud
+volumes/cloud-backups
+volumes/cloud-tls

@@ -98,7 +98,7 @@ describe('OrganizationInvite utils', () => {
 
   test.each<[OrganizationInviteStatus, string, string | undefined]>([
     ['signed-out', 'View invitation', 'Sign in or create an account to view this invitation'],
-    ['ready', 'Join Acme Corp', 'You have been invited to join this Supabase organization'],
+    ['ready', 'Join Acme Corp', 'You have been invited to join this NicerBase organization'],
     ['wrong-account', 'Wrong account', undefined],
     ['expired', 'Invite expired', undefined],
     ['invalid', 'Invalid invitation', undefined],

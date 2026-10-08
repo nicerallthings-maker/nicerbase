@@ -52,7 +52,7 @@ type SignInLayoutProps = {
 
 const TermsText = () => (
   <>
-    By continuing, you agree to Supabase’s{' '}
+    By continuing, you agree to NicerBase’s{' '}
     <InlineLink href="https://supabase.com/terms">Terms of Service</InlineLink> and{' '}
     <InlineLink href="https://supabase.com/privacy">Privacy Policy</InlineLink>, and to receive
     periodic emails with updates.
@@ -183,10 +183,10 @@ export const SignInLayout = ({
             right={<SupabaseLogo />}
           />
         }
-        title={destination ? `Continue to ${destination.displayName}` : `${verb} to Supabase`}
+        title={destination ? `Continue to ${destination.displayName}` : `${verb} to NicerBase`}
         description={
           destination
-            ? `${verb} to Supabase using your ${focusProvider.displayName} account`
+            ? `${verb} to NicerBase using your ${focusProvider.displayName} account`
             : `Use your ${focusProvider.displayName} account to continue`
         }
         footer={
@@ -227,7 +227,7 @@ export const SignInLayout = ({
                         ? `${BASE_PATH}/img/supabase-dark.svg`
                         : `${BASE_PATH}/img/supabase-light.svg`
                     }
-                    alt="Supabase Logo"
+                    alt="NicerBase Logo"
                     className={largeLogo ? 'h-[48px]' : 'h-[24px]'}
                   />
                 </Link>

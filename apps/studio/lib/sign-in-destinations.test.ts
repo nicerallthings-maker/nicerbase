@@ -5,7 +5,7 @@ import { getDestinationById } from './sign-in-destinations'
 describe('sign-in destinations', () => {
   test('resolves a registered destination from its id', () => {
     expect(getDestinationById('cli')?.id).toBe('cli')
-    expect(getDestinationById('cli')?.displayName).toBe('Supabase CLI')
+    expect(getDestinationById('cli')?.displayName).toBe('NicerBase CLI')
   })
 
   test('does not resolve a destination for unknown or missing ids', () => {

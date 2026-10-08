@@ -159,7 +159,7 @@ function PromptInput({
         className
       )}
       placeholder={
-        isLoading || isResponding ? 'Waiting on an answer...' : 'Ask Supabase AI a question...'
+        isLoading || isResponding ? 'Waiting on an answer...' : 'Ask NicerBase AI a question...'
       }
       value={inputValue}
       onValueChange={setInputValue}
@@ -230,7 +230,7 @@ function AiMessages({ messages }: { messages: Array<Message> }) {
                       allowHoverEffect
                     />
                     <span className="font-mono text-sm text-foreground-muted uppercase tracking-widest md:hidden">
-                      Supabase AI
+                      NicerBase AI
                     </span>
                   </div>
                   <div>
@@ -317,7 +317,7 @@ function ErrorState({ handleReset }: { handleReset: () => void }) {
     <div className="p-6 flex flex-col items-center gap-2 mt-4">
       <StatusIcon variant="warning" />
       <p className="text-sm text-foreground text-center">
-        Sorry, looks like Supabase AI is having a hard time!
+        Sorry, looks like NicerBase AI is having a hard time!
       </p>
       <p className="text-sm text-foreground-lighter text-center">Please try again in a bit.</p>
       <Button size="tiny" onClick={handleReset}>

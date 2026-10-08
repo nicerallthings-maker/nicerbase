@@ -20,6 +20,7 @@ import { ButtonTooltip } from '../ui/ButtonTooltip'
 import { useFeaturePreviewModal } from './App/FeaturePreview/FeaturePreviewContext'
 import { DevToolbarMenuGroup } from './DevToolbarMenuGroup'
 import { ProfileImage } from '@/components/ui/ProfileImage'
+import { getProfileDisplayName, useProfile } from '@/lib/profile'
 import { useTrack } from '@/lib/telemetry/track'
 import { useAppStateSnapshot } from '@/state/app-state'
 
@@ -35,6 +36,7 @@ export const LocalDropdown = ({
   const appStateSnapshot = useAppStateSnapshot()
   const { toggleFeaturePreviewModal } = useFeaturePreviewModal()
   const track = useTrack()
+  const { profile } = useProfile()
 
   return (
     <DropdownMenu
@@ -47,7 +49,7 @@ export const LocalDropdown = ({
           className="[&>span]:flex px-0 py-0 rounded-full overflow-hidden h-8 w-8"
           tooltip={{ content: { text: 'Settings' } }}
         >
-          <ProfileImage className="w-8 h-8 rounded-md" />
+          <ProfileImage alt={getProfileDisplayName(profile)} className="w-8 h-8 rounded-full" />
           <span className="sr-only">Settings</span>
         </ButtonTooltip>
       </DropdownMenuTrigger>

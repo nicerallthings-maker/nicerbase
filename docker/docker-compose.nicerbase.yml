@@ -1,0 +1,18 @@
+# NicerBase: build Studio from this repository instead of pulling the upstream image,
+# so the NicerBase branding and the MongoDB explorer are included.
+#
+# Usage (Postgres + MongoDB):
+#   docker compose -f docker-compose.yml -f docker-compose.mongodb.yml -f docker-compose.nicerbase.yml up -d --build
+
+services:
+  studio:
+    container_name: nicerbase-studio
+    image: nicerbase/studio:local
+    build:
+      context: ..
+      dockerfile: apps/studio/Dockerfile
+      target: production
+    environment:
+      # Name and email shown on the profile avatar (initials) in Studio
+      STUDIO_ADMIN_NAME: ${STUDIO_ADMIN_NAME:-NicerBase Admin}
+      STUDIO_ADMIN_EMAIL: ${STUDIO_ADMIN_EMAIL:-admin@nicerbase.local}

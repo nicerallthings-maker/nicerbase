@@ -78,7 +78,8 @@
 }
 
 :root {
-  --font-sans: 'Inter', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* NicerBase: Manrope for body text too (rounder, matches the logo). */
+  --font-sans: 'Manrope', 'Inter', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-heading: 'Manrope', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-source-code-pro: 'Source Code Pro', 'Office Code Pro', Menlo, monospace;
 }

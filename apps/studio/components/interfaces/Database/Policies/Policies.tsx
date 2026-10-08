@@ -158,9 +158,9 @@ export const Policies = ({
         {!isSchemaExposedAPI && (
           <Admonition
             type="warning"
-            title="No data from any table in this schema will be selectable via Supabase APIs"
+            title="No data from any table in this schema will be selectable via NicerBase APIs"
           >
-            This schema is not exposed via the Supabase APIs. You may configure this in your
+            This schema is not exposed via the NicerBase APIs. You may configure this in your
             project’s{' '}
             <InlineLink href={`/project/${ref}/integrations/data_api/settings`}>
               Data API settings

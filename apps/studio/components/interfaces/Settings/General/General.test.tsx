@@ -90,8 +90,8 @@ describe('General', () => {
       expect(screen.getByText('ProjectAccessSection')).toBeInTheDocument()
 
       // No deployment-mode admonitions
-      expect(screen.queryByText(/Local development with the Supabase CLI/i)).not.toBeInTheDocument()
-      expect(screen.queryByText(/Self-hosted Supabase/i)).not.toBeInTheDocument()
+      expect(screen.queryByText(/Local development with the NicerBase CLI/i)).not.toBeInTheDocument()
+      expect(screen.queryByText(/Self-hosted NicerBase/i)).not.toBeInTheDocument()
     })
   })
 
@@ -111,8 +111,8 @@ describe('General', () => {
       expect(screen.getByText('Project name')).toBeInTheDocument()
       expect(screen.getByDisplayValue('My Project')).toHaveAttribute('readonly')
 
-      expect(screen.getByText(/Local development with the Supabase CLI/i)).toBeInTheDocument()
-      expect(screen.queryByText(/Self-hosted Supabase/i)).not.toBeInTheDocument()
+      expect(screen.getByText(/Local development with the NicerBase CLI/i)).toBeInTheDocument()
+      expect(screen.queryByText(/Self-hosted NicerBase/i)).not.toBeInTheDocument()
     })
   })
 
@@ -132,8 +132,8 @@ describe('General', () => {
       expect(screen.getByText('Project name')).toBeInTheDocument()
       expect(screen.getByDisplayValue('My Project')).toHaveAttribute('readonly')
 
-      expect(screen.getByText(/Self-hosted Supabase/i)).toBeInTheDocument()
-      expect(screen.queryByText(/Local development with the Supabase CLI/i)).not.toBeInTheDocument()
+      expect(screen.getByText(/Self-hosted NicerBase/i)).toBeInTheDocument()
+      expect(screen.queryByText(/Local development with the NicerBase CLI/i)).not.toBeInTheDocument()
     })
 
     it('does not render Project ID, region, Save action, or the member access section', () => {

@@ -30,7 +30,7 @@ export const CLSPreview = () => {
             <code className="text-code-inline">supabase db diff</code>.
           </AlertTitle>
           <AlertDescription>
-            Column privileges are not supported in the current version of the Supabase CLI.
+            Column privileges are not supported in the current version of the NicerBase CLI.
             <br />
             You will need to manually apply these changes to your database.
           </AlertDescription>

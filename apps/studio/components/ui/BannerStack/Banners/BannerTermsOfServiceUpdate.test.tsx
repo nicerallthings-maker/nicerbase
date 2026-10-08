@@ -25,10 +25,10 @@ describe('BannerTermsOfServiceUpdate', () => {
     const user = userEvent.setup()
     renderNotice()
     expect(screen.getByText('We’ve updated our Terms of Service')).toBeInTheDocument()
-    expect(screen.queryByText(/Clarify which Supabase entity/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Clarify which NicerBase entity/)).not.toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Learn more' }))
     expect(screen.getByRole('dialog')).toBeInTheDocument()
-    expect(screen.getByText(/Clarify which Supabase entity/)).toBeInTheDocument()
+    expect(screen.getByText(/Clarify which NicerBase entity/)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute(
       'href',
       'https://supabase.com/terms'

@@ -1,6 +1,6 @@
 {
-  "name": "Supabase Studio",
-  "short_name": "Supabase",
+  "name": "NicerBase Studio",
+  "short_name": "NicerBase",
   "description": "The Postgres Development Platform.",
   "display_override": ["minimal-ui"],
   "display": "standalone",

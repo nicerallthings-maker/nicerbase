@@ -45,10 +45,10 @@ const ApiKeysNewPage: NextPageWithLayout = () => {
         {isCli && (
           <Admonition
             type="default"
-            title="Local development with the Supabase CLI"
+            title="Local development with the NicerBase CLI"
             description={
               <p>
-                The API keys are automatically managed by the Supabase CLI and are not manually
+                The API keys are automatically managed by the NicerBase CLI and are not manually
                 configurable.
               </p>
             }
@@ -58,7 +58,7 @@ const ApiKeysNewPage: NextPageWithLayout = () => {
         {isSelfHosted && (
           <Admonition
             type="default"
-            title="Self-hosted Supabase"
+            title="Self-hosted NicerBase"
             description={
               <p>
                 <code className="text-code-inline">SUPABASE_PUBLISHABLE_KEY</code> and{' '}

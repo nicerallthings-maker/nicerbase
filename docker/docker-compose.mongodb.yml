@@ -1,0 +1,39 @@
+# NicerBase: MongoDB engine for projects.
+#
+# Adds a MongoDB server and points Studio's MongoDB explorer at it.
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.mongodb.yml up -d
+#
+# Licensing note: MongoDB Community Server is published under the SSPL. If you offer
+# MongoDB to customers as a hosted service, review SSPL section 13 first. FerretDB
+# (Apache 2.0, MongoDB wire-compatible, backed by Postgres) is a drop-in alternative:
+# swap the image for ghcr.io/ferretdb/ferretdb and keep MONGODB_URL the same shape.
+
+services:
+  mongodb:
+    container_name: nicerbase-mongodb
+    image: mongo:8.0
+    restart: unless-stopped
+    command: ["--auth", "--bind_ip_all"]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USER:-nicerbase}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    ports:
+      # Bound to localhost only; expose through your gateway or a tunnel for apps.
+      - 127.0.0.1:${MONGODB_PORT:-27017}:27017
+    volumes:
+      - ./volumes/mongodb:/data/db:Z
+
+  studio:
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    environment:
+      MONGODB_URL: mongodb://${MONGODB_ROOT_USER:-nicerbase}:${MONGODB_ROOT_PASSWORD}@mongodb:27017/?authSource=admin

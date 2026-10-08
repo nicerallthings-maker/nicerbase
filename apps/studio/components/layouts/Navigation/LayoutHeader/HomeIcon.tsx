@@ -38,7 +38,7 @@ export const HomeIcon = ({ className }: { className?: string }) => {
           tabIndex={0}
         >
           <img
-            alt="Supabase"
+            alt="NicerBase"
             src={`${router.basePath}/img/supabase-logo.svg`}
             className={largeLogo ? 'h-[20px]' : 'h-[18px]'}
           />

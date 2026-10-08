@@ -181,6 +181,7 @@ import { Route as ProjectRefLogsPostgrestLogsRouteImport } from './routes/projec
 import { Route as ProjectRefLogsRealtimeLogsRouteImport } from './routes/project/$ref/logs/realtime-logs'
 import { Route as ProjectRefLogsReplicationLogsRouteImport } from './routes/project/$ref/logs/replication-logs'
 import { Route as ProjectRefLogsStorageLogsRouteImport } from './routes/project/$ref/logs/storage-logs'
+import { Route as ProjectRefMongodbIndexRouteImport } from './routes/project/$ref/mongodb/index'
 import { Route as ProjectRefObservabilityIndexRouteImport } from './routes/project/$ref/observability/index'
 import { Route as ProjectRefObservabilityIdRouteImport } from './routes/project/$ref/observability/$id'
 import { Route as ProjectRefObservabilityApiOverviewRouteImport } from './routes/project/$ref/observability/api-overview'
@@ -294,6 +295,9 @@ import { Route as ApiPlatformProjectsRefConfigIndexRouteImport } from './routes/
 import { Route as ApiPlatformProjectsRefConfigPostgrestRouteImport } from './routes/api/platform/projects/$ref/config/postgrest'
 import { Route as ApiPlatformProjectsRefContentIndexRouteImport } from './routes/api/platform/projects/$ref/content/index'
 import { Route as ApiPlatformProjectsRefContentCountRouteImport } from './routes/api/platform/projects/$ref/content/count'
+import { Route as ApiPlatformProjectsRefMongodbIndexRouteImport } from './routes/api/platform/projects/$ref/mongodb/index'
+import { Route as ApiPlatformProjectsRefMongodbCollectionsRouteImport } from './routes/api/platform/projects/$ref/mongodb/collections'
+import { Route as ApiPlatformProjectsRefMongodbDocumentsRouteImport } from './routes/api/platform/projects/$ref/mongodb/documents'
 import { Route as ApiPlatformPropsProjectRefIndexRouteImport } from './routes/api/platform/props/project/$ref/index'
 import { Route as ApiPlatformPropsProjectRefApiRouteImport } from './routes/api/platform/props/project/$ref/api'
 import { Route as ApiPlatformStorageRefBucketsIndexRouteImport } from './routes/api/platform/storage/$ref/buckets/index'
@@ -1242,6 +1246,11 @@ const ProjectRefLogsStorageLogsRoute =
     path: '/storage-logs',
     getParentRoute: () => ProjectRefLogsRoute,
   } as any)
+const ProjectRefMongodbIndexRoute = ProjectRefMongodbIndexRouteImport.update({
+  id: '/mongodb/',
+  path: '/mongodb/',
+  getParentRoute: () => ProjectRefRoute,
+} as any)
 const ProjectRefObservabilityIndexRoute =
   ProjectRefObservabilityIndexRouteImport.update({
     id: '/',
@@ -1910,6 +1919,24 @@ const ApiPlatformProjectsRefContentCountRoute =
     path: '/api/platform/projects/$ref/content/count',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPlatformProjectsRefMongodbIndexRoute =
+  ApiPlatformProjectsRefMongodbIndexRouteImport.update({
+    id: '/api/platform/projects/$ref/mongodb/',
+    path: '/api/platform/projects/$ref/mongodb/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPlatformProjectsRefMongodbCollectionsRoute =
+  ApiPlatformProjectsRefMongodbCollectionsRouteImport.update({
+    id: '/api/platform/projects/$ref/mongodb/collections',
+    path: '/api/platform/projects/$ref/mongodb/collections',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPlatformProjectsRefMongodbDocumentsRoute =
+  ApiPlatformProjectsRefMongodbDocumentsRouteImport.update({
+    id: '/api/platform/projects/$ref/mongodb/documents',
+    path: '/api/platform/projects/$ref/mongodb/documents',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPlatformPropsProjectRefIndexRoute =
   ApiPlatformPropsProjectRefIndexRouteImport.update({
     id: '/api/platform/props/project/$ref/',
@@ -2342,6 +2369,7 @@ export interface FileRoutesByFullPath {
   '/project/$ref/functions/': typeof ProjectRefFunctionsIndexRoute
   '/project/$ref/integrations/': typeof ProjectRefIntegrationsIndexRoute
   '/project/$ref/logs/': typeof ProjectRefLogsIndexRoute
+  '/project/$ref/mongodb/': typeof ProjectRefMongodbIndexRoute
   '/project/$ref/observability/': typeof ProjectRefObservabilityIndexRoute
   '/project/$ref/sql/': typeof ProjectRefSqlIndexRoute
   '/org/$slug/webhooks/$endpointId': typeof AppOrgSlugWebhooksEndpointIdRoute
@@ -2425,6 +2453,8 @@ export interface FileRoutesByFullPath {
   '/api/platform/projects/$ref/billing/addons': typeof ApiPlatformProjectsRefBillingAddonsRoute
   '/api/platform/projects/$ref/config/postgrest': typeof ApiPlatformProjectsRefConfigPostgrestRoute
   '/api/platform/projects/$ref/content/count': typeof ApiPlatformProjectsRefContentCountRoute
+  '/api/platform/projects/$ref/mongodb/collections': typeof ApiPlatformProjectsRefMongodbCollectionsRoute
+  '/api/platform/projects/$ref/mongodb/documents': typeof ApiPlatformProjectsRefMongodbDocumentsRoute
   '/api/platform/props/project/$ref/api': typeof ApiPlatformPropsProjectRefApiRoute
   '/api/v1/projects/$ref/api-keys/$id': typeof ApiV1ProjectsRefApiKeysIdRoute
   '/api/v1/projects/$ref/database/migrations': typeof ApiV1ProjectsRefDatabaseMigrationsRoute
@@ -2437,6 +2467,7 @@ export interface FileRoutesByFullPath {
   '/api/platform/pg-meta/$ref/query/': typeof ApiPlatformPgMetaRefQueryIndexRoute
   '/api/platform/projects/$ref/config/': typeof ApiPlatformProjectsRefConfigIndexRoute
   '/api/platform/projects/$ref/content/': typeof ApiPlatformProjectsRefContentIndexRoute
+  '/api/platform/projects/$ref/mongodb/': typeof ApiPlatformProjectsRefMongodbIndexRoute
   '/api/platform/props/project/$ref/': typeof ApiPlatformPropsProjectRefIndexRoute
   '/api/platform/storage/$ref/buckets/': typeof ApiPlatformStorageRefBucketsIndexRoute
   '/api/platform/storage/$ref/vector-buckets/': typeof ApiPlatformStorageRefVectorBucketsIndexRoute
@@ -2651,6 +2682,7 @@ export interface FileRoutesByTo {
   '/project/$ref/functions': typeof ProjectRefFunctionsIndexRoute
   '/project/$ref/integrations': typeof ProjectRefIntegrationsIndexRoute
   '/project/$ref/logs': typeof ProjectRefLogsIndexRoute
+  '/project/$ref/mongodb': typeof ProjectRefMongodbIndexRoute
   '/project/$ref/observability': typeof ProjectRefObservabilityIndexRoute
   '/project/$ref/sql': typeof ProjectRefSqlIndexRoute
   '/org/$slug/webhooks/$endpointId': typeof AppOrgSlugWebhooksEndpointIdRoute
@@ -2734,6 +2766,8 @@ export interface FileRoutesByTo {
   '/api/platform/projects/$ref/billing/addons': typeof ApiPlatformProjectsRefBillingAddonsRoute
   '/api/platform/projects/$ref/config/postgrest': typeof ApiPlatformProjectsRefConfigPostgrestRoute
   '/api/platform/projects/$ref/content/count': typeof ApiPlatformProjectsRefContentCountRoute
+  '/api/platform/projects/$ref/mongodb/collections': typeof ApiPlatformProjectsRefMongodbCollectionsRoute
+  '/api/platform/projects/$ref/mongodb/documents': typeof ApiPlatformProjectsRefMongodbDocumentsRoute
   '/api/platform/props/project/$ref/api': typeof ApiPlatformPropsProjectRefApiRoute
   '/api/v1/projects/$ref/api-keys/$id': typeof ApiV1ProjectsRefApiKeysIdRoute
   '/api/v1/projects/$ref/database/migrations': typeof ApiV1ProjectsRefDatabaseMigrationsRoute
@@ -2746,6 +2780,7 @@ export interface FileRoutesByTo {
   '/api/platform/pg-meta/$ref/query': typeof ApiPlatformPgMetaRefQueryIndexRoute
   '/api/platform/projects/$ref/config': typeof ApiPlatformProjectsRefConfigIndexRoute
   '/api/platform/projects/$ref/content': typeof ApiPlatformProjectsRefContentIndexRoute
+  '/api/platform/projects/$ref/mongodb': typeof ApiPlatformProjectsRefMongodbIndexRoute
   '/api/platform/props/project/$ref': typeof ApiPlatformPropsProjectRefIndexRoute
   '/api/platform/storage/$ref/buckets': typeof ApiPlatformStorageRefBucketsIndexRoute
   '/api/platform/storage/$ref/vector-buckets': typeof ApiPlatformStorageRefVectorBucketsIndexRoute
@@ -2978,6 +3013,7 @@ export interface FileRoutesById {
   '/project/$ref/functions/': typeof ProjectRefFunctionsIndexRoute
   '/project/$ref/integrations/': typeof ProjectRefIntegrationsIndexRoute
   '/project/$ref/logs/': typeof ProjectRefLogsIndexRoute
+  '/project/$ref/mongodb/': typeof ProjectRefMongodbIndexRoute
   '/project/$ref/observability/': typeof ProjectRefObservabilityIndexRoute
   '/project/$ref/sql/': typeof ProjectRefSqlIndexRoute
   '/_app/org/$slug/webhooks/$endpointId': typeof AppOrgSlugWebhooksEndpointIdRoute
@@ -3061,6 +3097,8 @@ export interface FileRoutesById {
   '/api/platform/projects/$ref/billing/addons': typeof ApiPlatformProjectsRefBillingAddonsRoute
   '/api/platform/projects/$ref/config/postgrest': typeof ApiPlatformProjectsRefConfigPostgrestRoute
   '/api/platform/projects/$ref/content/count': typeof ApiPlatformProjectsRefContentCountRoute
+  '/api/platform/projects/$ref/mongodb/collections': typeof ApiPlatformProjectsRefMongodbCollectionsRoute
+  '/api/platform/projects/$ref/mongodb/documents': typeof ApiPlatformProjectsRefMongodbDocumentsRoute
   '/api/platform/props/project/$ref/api': typeof ApiPlatformPropsProjectRefApiRoute
   '/api/v1/projects/$ref/api-keys/$id': typeof ApiV1ProjectsRefApiKeysIdRoute
   '/api/v1/projects/$ref/database/migrations': typeof ApiV1ProjectsRefDatabaseMigrationsRoute
@@ -3073,6 +3111,7 @@ export interface FileRoutesById {
   '/api/platform/pg-meta/$ref/query/': typeof ApiPlatformPgMetaRefQueryIndexRoute
   '/api/platform/projects/$ref/config/': typeof ApiPlatformProjectsRefConfigIndexRoute
   '/api/platform/projects/$ref/content/': typeof ApiPlatformProjectsRefContentIndexRoute
+  '/api/platform/projects/$ref/mongodb/': typeof ApiPlatformProjectsRefMongodbIndexRoute
   '/api/platform/props/project/$ref/': typeof ApiPlatformPropsProjectRefIndexRoute
   '/api/platform/storage/$ref/buckets/': typeof ApiPlatformStorageRefBucketsIndexRoute
   '/api/platform/storage/$ref/vector-buckets/': typeof ApiPlatformStorageRefVectorBucketsIndexRoute
@@ -3304,6 +3343,7 @@ export interface FileRouteTypes {
     | '/project/$ref/functions/'
     | '/project/$ref/integrations/'
     | '/project/$ref/logs/'
+    | '/project/$ref/mongodb/'
     | '/project/$ref/observability/'
     | '/project/$ref/sql/'
     | '/org/$slug/webhooks/$endpointId'
@@ -3387,6 +3427,8 @@ export interface FileRouteTypes {
     | '/api/platform/projects/$ref/billing/addons'
     | '/api/platform/projects/$ref/config/postgrest'
     | '/api/platform/projects/$ref/content/count'
+    | '/api/platform/projects/$ref/mongodb/collections'
+    | '/api/platform/projects/$ref/mongodb/documents'
     | '/api/platform/props/project/$ref/api'
     | '/api/v1/projects/$ref/api-keys/$id'
     | '/api/v1/projects/$ref/database/migrations'
@@ -3399,6 +3441,7 @@ export interface FileRouteTypes {
     | '/api/platform/pg-meta/$ref/query/'
     | '/api/platform/projects/$ref/config/'
     | '/api/platform/projects/$ref/content/'
+    | '/api/platform/projects/$ref/mongodb/'
     | '/api/platform/props/project/$ref/'
     | '/api/platform/storage/$ref/buckets/'
     | '/api/platform/storage/$ref/vector-buckets/'
@@ -3613,6 +3656,7 @@ export interface FileRouteTypes {
     | '/project/$ref/functions'
     | '/project/$ref/integrations'
     | '/project/$ref/logs'
+    | '/project/$ref/mongodb'
     | '/project/$ref/observability'
     | '/project/$ref/sql'
     | '/org/$slug/webhooks/$endpointId'
@@ -3696,6 +3740,8 @@ export interface FileRouteTypes {
     | '/api/platform/projects/$ref/billing/addons'
     | '/api/platform/projects/$ref/config/postgrest'
     | '/api/platform/projects/$ref/content/count'
+    | '/api/platform/projects/$ref/mongodb/collections'
+    | '/api/platform/projects/$ref/mongodb/documents'
     | '/api/platform/props/project/$ref/api'
     | '/api/v1/projects/$ref/api-keys/$id'
     | '/api/v1/projects/$ref/database/migrations'
@@ -3708,6 +3754,7 @@ export interface FileRouteTypes {
     | '/api/platform/pg-meta/$ref/query'
     | '/api/platform/projects/$ref/config'
     | '/api/platform/projects/$ref/content'
+    | '/api/platform/projects/$ref/mongodb'
     | '/api/platform/props/project/$ref'
     | '/api/platform/storage/$ref/buckets'
     | '/api/platform/storage/$ref/vector-buckets'
@@ -3939,6 +3986,7 @@ export interface FileRouteTypes {
     | '/project/$ref/functions/'
     | '/project/$ref/integrations/'
     | '/project/$ref/logs/'
+    | '/project/$ref/mongodb/'
     | '/project/$ref/observability/'
     | '/project/$ref/sql/'
     | '/_app/org/$slug/webhooks/$endpointId'
@@ -4022,6 +4070,8 @@ export interface FileRouteTypes {
     | '/api/platform/projects/$ref/billing/addons'
     | '/api/platform/projects/$ref/config/postgrest'
     | '/api/platform/projects/$ref/content/count'
+    | '/api/platform/projects/$ref/mongodb/collections'
+    | '/api/platform/projects/$ref/mongodb/documents'
     | '/api/platform/props/project/$ref/api'
     | '/api/v1/projects/$ref/api-keys/$id'
     | '/api/v1/projects/$ref/database/migrations'
@@ -4034,6 +4084,7 @@ export interface FileRouteTypes {
     | '/api/platform/pg-meta/$ref/query/'
     | '/api/platform/projects/$ref/config/'
     | '/api/platform/projects/$ref/content/'
+    | '/api/platform/projects/$ref/mongodb/'
     | '/api/platform/props/project/$ref/'
     | '/api/platform/storage/$ref/buckets/'
     | '/api/platform/storage/$ref/vector-buckets/'
@@ -4157,6 +4208,8 @@ export interface RootRouteChildren {
   ApiPlatformProjectsRefBillingAddonsRoute: typeof ApiPlatformProjectsRefBillingAddonsRoute
   ApiPlatformProjectsRefConfigPostgrestRoute: typeof ApiPlatformProjectsRefConfigPostgrestRoute
   ApiPlatformProjectsRefContentCountRoute: typeof ApiPlatformProjectsRefContentCountRoute
+  ApiPlatformProjectsRefMongodbCollectionsRoute: typeof ApiPlatformProjectsRefMongodbCollectionsRoute
+  ApiPlatformProjectsRefMongodbDocumentsRoute: typeof ApiPlatformProjectsRefMongodbDocumentsRoute
   ApiPlatformPropsProjectRefApiRoute: typeof ApiPlatformPropsProjectRefApiRoute
   ApiV1ProjectsRefDatabaseMigrationsRoute: typeof ApiV1ProjectsRefDatabaseMigrationsRoute
   ApiV1ProjectsRefTypesTypescriptRoute: typeof ApiV1ProjectsRefTypesTypescriptRoute
@@ -4164,6 +4217,7 @@ export interface RootRouteChildren {
   ApiPlatformPgMetaRefQueryIndexRoute: typeof ApiPlatformPgMetaRefQueryIndexRoute
   ApiPlatformProjectsRefConfigIndexRoute: typeof ApiPlatformProjectsRefConfigIndexRoute
   ApiPlatformProjectsRefContentIndexRoute: typeof ApiPlatformProjectsRefContentIndexRoute
+  ApiPlatformProjectsRefMongodbIndexRoute: typeof ApiPlatformProjectsRefMongodbIndexRoute
   ApiPlatformPropsProjectRefIndexRoute: typeof ApiPlatformPropsProjectRefIndexRoute
   ApiPlatformStorageRefBucketsIndexRoute: typeof ApiPlatformStorageRefBucketsIndexRoute
   ApiPlatformStorageRefVectorBucketsIndexRoute: typeof ApiPlatformStorageRefVectorBucketsIndexRoute
@@ -5400,6 +5454,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectRefLogsStorageLogsRouteImport
       parentRoute: typeof ProjectRefLogsRoute
     }
+    '/project/$ref/mongodb/': {
+      id: '/project/$ref/mongodb/'
+      path: '/mongodb'
+      fullPath: '/project/$ref/mongodb/'
+      preLoaderRoute: typeof ProjectRefMongodbIndexRouteImport
+      parentRoute: typeof ProjectRefRoute
+    }
     '/project/$ref/observability/': {
       id: '/project/$ref/observability/'
       path: '/'
@@ -6189,6 +6250,27 @@ declare module '@tanstack/react-router' {
       path: '/api/platform/projects/$ref/content/count'
       fullPath: '/api/platform/projects/$ref/content/count'
       preLoaderRoute: typeof ApiPlatformProjectsRefContentCountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/platform/projects/$ref/mongodb/': {
+      id: '/api/platform/projects/$ref/mongodb/'
+      path: '/api/platform/projects/$ref/mongodb'
+      fullPath: '/api/platform/projects/$ref/mongodb/'
+      preLoaderRoute: typeof ApiPlatformProjectsRefMongodbIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/platform/projects/$ref/mongodb/collections': {
+      id: '/api/platform/projects/$ref/mongodb/collections'
+      path: '/api/platform/projects/$ref/mongodb/collections'
+      fullPath: '/api/platform/projects/$ref/mongodb/collections'
+      preLoaderRoute: typeof ApiPlatformProjectsRefMongodbCollectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/platform/projects/$ref/mongodb/documents': {
+      id: '/api/platform/projects/$ref/mongodb/documents'
+      path: '/api/platform/projects/$ref/mongodb/documents'
+      fullPath: '/api/platform/projects/$ref/mongodb/documents'
+      preLoaderRoute: typeof ApiPlatformProjectsRefMongodbDocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/platform/props/project/$ref/': {
@@ -7134,6 +7216,7 @@ interface ProjectRefRouteChildren {
   ProjectRefStorageRoute: typeof ProjectRefStorageRouteWithChildren
   ProjectRefIndexRoute: typeof ProjectRefIndexRoute
   ProjectRefApiIndexRoute: typeof ProjectRefApiIndexRoute
+  ProjectRefMongodbIndexRoute: typeof ProjectRefMongodbIndexRoute
 }
 
 const ProjectRefRouteChildren: ProjectRefRouteChildren = {
@@ -7155,6 +7238,7 @@ const ProjectRefRouteChildren: ProjectRefRouteChildren = {
   ProjectRefStorageRoute: ProjectRefStorageRouteWithChildren,
   ProjectRefIndexRoute: ProjectRefIndexRoute,
   ProjectRefApiIndexRoute: ProjectRefApiIndexRoute,
+  ProjectRefMongodbIndexRoute: ProjectRefMongodbIndexRoute,
 }
 
 const ProjectRefRouteWithChildren = ProjectRefRoute._addFileChildren(
@@ -7304,6 +7388,10 @@ const rootRouteChildren: RootRouteChildren = {
     ApiPlatformProjectsRefConfigPostgrestRoute,
   ApiPlatformProjectsRefContentCountRoute:
     ApiPlatformProjectsRefContentCountRoute,
+  ApiPlatformProjectsRefMongodbCollectionsRoute:
+    ApiPlatformProjectsRefMongodbCollectionsRoute,
+  ApiPlatformProjectsRefMongodbDocumentsRoute:
+    ApiPlatformProjectsRefMongodbDocumentsRoute,
   ApiPlatformPropsProjectRefApiRoute: ApiPlatformPropsProjectRefApiRoute,
   ApiV1ProjectsRefDatabaseMigrationsRoute:
     ApiV1ProjectsRefDatabaseMigrationsRoute,
@@ -7314,6 +7402,8 @@ const rootRouteChildren: RootRouteChildren = {
     ApiPlatformProjectsRefConfigIndexRoute,
   ApiPlatformProjectsRefContentIndexRoute:
     ApiPlatformProjectsRefContentIndexRoute,
+  ApiPlatformProjectsRefMongodbIndexRoute:
+    ApiPlatformProjectsRefMongodbIndexRoute,
   ApiPlatformPropsProjectRefIndexRoute: ApiPlatformPropsProjectRefIndexRoute,
   ApiPlatformStorageRefBucketsIndexRoute:
     ApiPlatformStorageRefBucketsIndexRoute,

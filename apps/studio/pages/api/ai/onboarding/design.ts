@@ -30,7 +30,7 @@ const getTools = () => {
 
     setServices: tool({
       description:
-        'Set the entire list of Supabase services needed for the project. Always include the full list',
+        'Set the entire list of NicerBase services needed for the project. Always include the full list',
       inputSchema: z.object({
         services: z
           .array(ServiceSchema)

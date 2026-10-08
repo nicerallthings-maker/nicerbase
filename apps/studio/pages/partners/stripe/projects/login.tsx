@@ -26,7 +26,10 @@ import { buildStudioPageTitle } from '@/lib/page-title'
 import { useProfileNameAndPicture } from '@/lib/profile'
 import type { NextPageWithLayout } from '@/types'
 
-const PAGE_TITLE = buildStudioPageTitle({ section: 'Authorize Stripe Projects', brand: 'Supabase' })
+const PAGE_TITLE = buildStudioPageTitle({
+  section: 'Authorize Stripe Projects',
+  brand: 'NicerBase',
+})
 
 export const StripeProjectsLoginPage: NextPageWithLayout = () => {
   const router = useRouter()

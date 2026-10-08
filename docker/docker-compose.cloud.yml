@@ -1,0 +1,118 @@
+# NicerBase Cloud: multi-tenant console with sign-up / sign-in where each customer
+# project is an isolated Postgres or MongoDB database.
+#
+# Usage:
+#   cp .env.cloud.example .env.cloud   # then set real secrets
+#   docker compose -f docker-compose.cloud.yml --env-file .env.cloud up -d --build
+#
+# Console: http://localhost:${CLOUD_PORT:-4000}
+#
+# Customers connect straight to the tenant clusters, so expose ports 5432 and 27017
+# behind TLS (or a TCP proxy) in production and set the *_PUBLIC_HOST values below.
+
+name: nicerbase-cloud
+
+services:
+  cloud:
+    image: nicerbase/cloud:latest
+    build:
+      context: ..
+      dockerfile: apps/cloud/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      tenant-postgres:
+        condition: service_healthy
+      tenant-mongodb:
+        condition: service_healthy
+    ports:
+      - ${CLOUD_PORT:-4000}:4000
+    environment:
+      NICERBASE_PUBLIC_URL: ${NICERBASE_PUBLIC_URL:-http://localhost:4000}
+      NICERBASE_SECRET_KEY: ${NICERBASE_SECRET_KEY:?set NICERBASE_SECRET_KEY}
+      NICERBASE_CONTROL_DATABASE_URL: postgresql://postgres:${TENANT_POSTGRES_PASSWORD:?set TENANT_POSTGRES_PASSWORD}@tenant-postgres:5432/postgres
+      NICERBASE_MONGODB_ADMIN_URL: mongodb://${TENANT_MONGODB_USER:-nicerbase}:${TENANT_MONGODB_PASSWORD:?set TENANT_MONGODB_PASSWORD}@tenant-mongodb:27017/?authSource=admin
+      NICERBASE_POSTGRES_PUBLIC_HOST: ${NICERBASE_POSTGRES_PUBLIC_HOST:-localhost}
+      NICERBASE_POSTGRES_PUBLIC_PORT: ${TENANT_POSTGRES_PORT:-5432}
+      NICERBASE_MONGODB_PUBLIC_HOST: ${NICERBASE_MONGODB_PUBLIC_HOST:-localhost}
+      NICERBASE_MONGODB_PUBLIC_PORT: ${TENANT_MONGODB_PORT:-27017}
+      NICERBASE_MAX_PROJECTS_PER_USER: ${NICERBASE_MAX_PROJECTS_PER_USER:-5}
+      NICERBASE_SMTP_URL: ${NICERBASE_SMTP_URL:-}
+      NICERBASE_MAIL_FROM: ${NICERBASE_MAIL_FROM:-NicerBase <no-reply@localhost>}
+      NICERBASE_REQUIRE_EMAIL_VERIFICATION: ${NICERBASE_REQUIRE_EMAIL_VERIFICATION:-}
+
+  tenant-postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${TENANT_POSTGRES_PASSWORD}
+      # Customers authenticate with SCRAM over the network; no trust auth.
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    ports:
+      - ${TENANT_POSTGRES_PORT:-5432}:5432
+    volumes:
+      - nicerbase-tenant-postgres:/var/lib/postgresql/data
+
+  tenant-mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    command: ["--auth", "--bind_ip_all"]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${TENANT_MONGODB_USER:-nicerbase}
+      MONGO_INITDB_ROOT_PASSWORD: ${TENANT_MONGODB_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    ports:
+      - ${TENANT_MONGODB_PORT:-27017}:27017
+    volumes:
+      - nicerbase-tenant-mongodb:/data/db
+
+  # Daily dumps of every tenant database and the control plane, kept for
+  # BACKUP_RETENTION_DAYS in docker/volumes/cloud-backups.
+  # Restore one Postgres project:
+  #   pg_restore --clean -d <nb_ref> volumes/cloud-backups/postgres/<stamp>/postgres/<nb_ref>.dump
+  # Restore one MongoDB project:
+  #   mongorestore --gzip --archive=volumes/cloud-backups/mongodb/<stamp>/mongodb.archive.gz --nsInclude='nb_<ref>.*'
+  backup-postgres:
+    image: postgres:17
+    restart: unless-stopped
+    depends_on:
+      tenant-postgres:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/backup.sh', 'postgres']
+    environment:
+      TENANT_POSTGRES_PASSWORD: ${TENANT_POSTGRES_PASSWORD}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./cloud/backup.sh:/backup.sh:ro
+      - ./volumes/cloud-backups:/backups
+
+  backup-mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    depends_on:
+      tenant-mongodb:
+        condition: service_healthy
+    entrypoint: ['/bin/sh', '/backup.sh', 'mongodb']
+    environment:
+      TENANT_MONGODB_USER: ${TENANT_MONGODB_USER:-nicerbase}
+      TENANT_MONGODB_PASSWORD: ${TENANT_MONGODB_PASSWORD}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - ./cloud/backup.sh:/backup.sh:ro
+      - ./volumes/cloud-backups:/backups
+
+volumes:
+  nicerbase-tenant-postgres:
+  nicerbase-tenant-mongodb:

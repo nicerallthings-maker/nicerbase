@@ -190,7 +190,7 @@ export const ServiceVersionsSection = () => {
                                       </Badge>
                                     </TooltipTrigger>
                                     <TooltipContent side="bottom" className="w-52 text-center">
-                                      Project is on the latest version of Postgres that Supabase
+                                      Project is on the latest version of Postgres that NicerBase
                                       supports
                                     </TooltipContent>
                                   </Tooltip>

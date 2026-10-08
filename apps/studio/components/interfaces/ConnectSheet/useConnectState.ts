@@ -133,9 +133,9 @@ function getFieldOptionsFromSource({
         label: m.label,
         description:
           deploymentMode.isSelfHosted && m.value === 'direct'
-            ? 'Manually configurable for self-hosted Supabase.'
+            ? 'Manually configurable for self-hosted NicerBase.'
             : deploymentMode.isSelfHosted && m.value === 'session'
-              ? 'Supavisor (default pooler for self-hosted Supabase).'
+              ? 'Supavisor (default pooler for self-hosted NicerBase).'
               : m.description,
       }))
     }

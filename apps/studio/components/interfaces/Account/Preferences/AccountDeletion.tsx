@@ -17,7 +17,7 @@ export const AccountDeletion = () => {
         <PageSectionSummary>
           <PageSectionTitle>Danger zone</PageSectionTitle>
           <PageSectionDescription>
-            Permanently delete your Supabase account and data.
+            Permanently delete your NicerBase account and data.
           </PageSectionDescription>
         </PageSectionSummary>
       </PageSectionMeta>

@@ -195,7 +195,7 @@ const RenameQueryForm = ({ snippet, onCancel, onComplete }: RenameQueryFormProps
                 <div className="scale-75">
                   <AiIconAnimation loading={isTitleGenerationLoading} />
                 </div>
-                <span>Rename with Supabase AI</span>
+                <span>Rename with NicerBase AI</span>
               </div>
             </ButtonTooltip>
           </div>

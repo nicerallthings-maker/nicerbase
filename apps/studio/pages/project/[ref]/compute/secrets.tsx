@@ -31,14 +31,14 @@ const ComputeSecretsPage: NextPageWithLayout = () => {
             {isCli && (
               <Admonition
                 type="default"
-                title="Local development with the Supabase CLI"
-                description={<p>Add custom secrets from the Supabase CLI.</p>}
+                title="Local development with the NicerBase CLI"
+                description={<p>Add custom secrets from the NicerBase CLI.</p>}
               />
             )}
             {isSelfHosted && (
               <Admonition
                 type="default"
-                title="Self-hosted Supabase"
+                title="Self-hosted NicerBase"
                 description={<p>Set custom secrets via environment variables.</p>}
               />
             )}

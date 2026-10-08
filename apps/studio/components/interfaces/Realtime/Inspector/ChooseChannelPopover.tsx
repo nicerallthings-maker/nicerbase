@@ -155,7 +155,7 @@ export const ChooseChannelPopover = ({
                           </InputGroup>
                         </div>
                         <FormDescription className="text-xs text-foreground-lighter">
-                          The channel you initialize with the Supabase Realtime client. Learn more
+                          The channel you initialize with the NicerBase Realtime client. Learn more
                           in{' '}
                           <a
                             target="_blank"
