@@ -78,6 +78,7 @@ import {
   newProjectPage,
   notFoundPage,
   projectPage,
+  projectsPage,
   signInPage,
   signUpPage,
 } from './views.js'
@@ -527,7 +528,21 @@ async function route(ctx: Context) {
       config.requireEmailVerification && !(await isEmailVerified(user.id))
         ? verifyBanner(isEmailConfigured)
         : undefined
-    return send(res, 200, dashboardPage(user, await listProjects(user.id), { notice, banner }))
+    return send(
+      res,
+      200,
+      dashboardPage(user, await listProjects(user.id), {
+        notice,
+        banner,
+        maxProjects: config.maxProjectsPerUser,
+      })
+    )
+  }
+
+  if (method === 'GET' && path === '/projects') {
+    const user = requireUser(ctx)
+    if (!user) return
+    return send(res, 200, projectsPage(user, await listProjects(user.id)))
   }
 
   if (path === '/projects/new' || (method === 'POST' && path === '/projects')) {
@@ -536,7 +551,10 @@ async function route(ctx: Context) {
     if (config.requireEmailVerification && !(await isEmailVerified(user.id))) {
       return redirect(res, '/dashboard')
     }
-    if (method === 'GET') return send(res, 200, newProjectPage(user, isMongoAvailable()))
+    if (method === 'GET') {
+      const engine = url.searchParams.get('engine') ?? undefined
+      return send(res, 200, newProjectPage(user, isMongoAvailable(), undefined, { engine }))
+    }
     const form = await readForm(req)
     try {
       const project = await createProject(user.id, form)

@@ -33,3 +33,12 @@ document.addEventListener('keydown', function (e) {
     e.target.form && e.target.form.requestSubmit()
   }
 })
+// "Good morning, Ada" in the visitor's own time zone.
+function setGreeting() {
+  var el = document.querySelector('[data-greeting]')
+  if (!el) return
+  var hour = new Date().getHours()
+  var part = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
+  el.textContent = part + ', ' + el.getAttribute('data-name')
+}
+setGreeting()

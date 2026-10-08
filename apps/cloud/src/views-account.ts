@@ -1,10 +1,10 @@
 import type { User } from './auth.js'
 import { html } from './html.js'
-import { layout } from './views.js'
+import { appLayout, layout } from './views.js'
 
 function authCard(title: string, sub: string, body: ReturnType<typeof html>) {
   return html`<section class="auth">
-    <div class="auth-card">
+    <div class="glass auth-card">
       <img src="/mark.svg" alt="" width="44" height="44" />
       <h1>${title}</h1>
       <p class="sub">${sub}</p>
@@ -125,86 +125,83 @@ export function accountPage(
   user: User,
   options: { isVerified: boolean; notice?: string; passwordError?: string; deleteError?: string }
 ) {
-  return layout(
-    { title: 'Account', user },
-    html`<section class="page">
-      <div class="container" style="max-width:720px">
-        <a class="crumb" href="/dashboard">← Projects</a>
-        <div class="page-head"><h1>Account</h1></div>
-        ${options.notice
-          ? html`<div class="alert alert-ok" role="status">${options.notice}</div>`
-          : ''}
-        <div class="stack">
-          <div class="card">
-            <h3 style="margin-top:0">Profile</h3>
-            <dl class="meta">
-              <dt>Name</dt>
-              <dd>${user.name}</dd>
-              <dt>Email</dt>
-              <dd>
-                ${user.email}
-                ${options.isVerified
-                  ? html`<span class="badge badge-active">Verified</span>`
-                  : html`<span class="badge">Unverified</span>`}
-              </dd>
-            </dl>
-          </div>
+  return appLayout(
+    { title: 'Account', user, active: 'account' },
+    html`<div style="max-width:720px">
+      <div class="page-head"><h1>Account</h1></div>
+      ${options.notice
+        ? html`<div class="alert alert-ok" role="status">${options.notice}</div>`
+        : ''}
+      <div class="stack">
+        <div class="glass card">
+          <h3 style="margin-top:0">Profile</h3>
+          <dl class="meta">
+            <dt>Name</dt>
+            <dd>${user.name}</dd>
+            <dt>Email</dt>
+            <dd>
+              ${user.email}
+              ${options.isVerified
+                ? html`<span class="badge badge-active">Verified</span>`
+                : html`<span class="badge">Unverified</span>`}
+            </dd>
+          </dl>
+        </div>
 
-          <div class="card">
-            <h3 style="margin-top:0">Change password</h3>
-            <p class="hint" style="margin-bottom:12px">Signs you out on every other device.</p>
-            ${options.passwordError
-              ? html`<div class="alert alert-error" role="alert">${options.passwordError}</div>`
-              : ''}
-            <form method="post" action="/account/password" novalidate>
-              <div class="field">
-                <label for="current">Current password</label
-                ><input
-                  id="current"
-                  name="current"
-                  type="password"
-                  autocomplete="current-password"
-                  required
-                />
-              </div>
-              <div class="field">
-                <label for="next">New password</label
-                ><input
-                  id="next"
-                  name="next"
-                  type="password"
-                  autocomplete="new-password"
-                  minlength="10"
-                  required
-                /><span class="hint">At least 10 characters.</span>
-              </div>
-              <button class="btn" type="submit">Update password</button>
-            </form>
-          </div>
+        <div class="glass card">
+          <h3 style="margin-top:0">Change password</h3>
+          <p class="hint" style="margin-bottom:12px">Signs you out on every other device.</p>
+          ${options.passwordError
+            ? html`<div class="alert alert-error" role="alert">${options.passwordError}</div>`
+            : ''}
+          <form method="post" action="/account/password" novalidate>
+            <div class="field">
+              <label for="current">Current password</label
+              ><input
+                id="current"
+                name="current"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="next">New password</label
+              ><input
+                id="next"
+                name="next"
+                type="password"
+                autocomplete="new-password"
+                minlength="10"
+                required
+              /><span class="hint">At least 10 characters.</span>
+            </div>
+            <button class="btn" type="submit">Update password</button>
+          </form>
+        </div>
 
-          <div class="card danger-zone">
-            <h3 style="margin-top:0">Delete account</h3>
-            <p class="hint" style="margin-bottom:12px">
-              Permanently deletes your account, every project and all of their data. This can't be
-              undone.
-            </p>
-            ${options.deleteError
-              ? html`<div class="alert alert-error" role="alert">${options.deleteError}</div>`
-              : ''}
-            <form
-              method="post"
-              action="/account/delete"
-              data-confirm="Delete your account and every project? This can't be undone."
-            >
-              <div class="field">
-                <label for="confirm">Type <span class="mono">${user.email}</span> to confirm</label
-                ><input id="confirm" name="confirm" type="text" autocomplete="off" required />
-              </div>
-              <button class="btn btn-danger" type="submit">Delete account</button>
-            </form>
-          </div>
+        <div class="glass card danger-zone">
+          <h3 style="margin-top:0">Delete account</h3>
+          <p class="hint" style="margin-bottom:12px">
+            Permanently deletes your account, every project and all of their data. This can't be
+            undone.
+          </p>
+          ${options.deleteError
+            ? html`<div class="alert alert-error" role="alert">${options.deleteError}</div>`
+            : ''}
+          <form
+            method="post"
+            action="/account/delete"
+            data-confirm="Delete your account and every project? This can't be undone."
+          >
+            <div class="field">
+              <label for="confirm">Type <span class="mono">${user.email}</span> to confirm</label
+              ><input id="confirm" name="confirm" type="text" autocomplete="off" required />
+            </div>
+            <button class="btn btn-danger" type="submit">Delete account</button>
+          </form>
         </div>
       </div>
-    </section>`
+    </div>`
   )
 }

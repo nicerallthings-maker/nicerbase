@@ -2,8 +2,9 @@ import type { User } from './auth.js'
 import type { QueryResult, TableSummary } from './data.js'
 import { MAX_RESULT_ROWS, PAGE_SIZE } from './data.js'
 import { html, SafeHtml } from './html.js'
+import { icon } from './icons.js'
 import type { Project } from './projects.js'
-import { layout, ProjectTab, projectTabs } from './views.js'
+import { appLayout, projectHeader, ProjectTab } from './views.js'
 
 function projectShell(
   user: User,
@@ -13,22 +14,12 @@ function projectShell(
   body: SafeHtml,
   alerts: { notice?: string; error?: string } = {}
 ) {
-  return layout(
-    { title: `${title} · ${project.name}`, user },
-    html` <section class="page">
-      <div class="container">
-        <a class="crumb" href="/dashboard">← Projects</a>
-        <div class="page-head" style="margin-bottom:12px"><h1>${project.name}</h1></div>
-        ${projectTabs(project, active)}
-        ${alerts.notice
-          ? html`<div class="alert alert-ok" role="status">${alerts.notice}</div>`
-          : ''}
-        ${alerts.error
-          ? html`<div class="alert alert-error" role="alert">${alerts.error}</div>`
-          : ''}
-        ${body}
-      </div>
-    </section>`
+  return appLayout(
+    { title: `${title} · ${project.name}`, user, active: 'projects' },
+    html`${projectHeader(project, active)}
+    ${alerts.notice ? html`<div class="alert alert-ok" role="status">${alerts.notice}</div>` : ''}
+    ${alerts.error ? html`<div class="alert alert-error" role="alert">${alerts.error}</div>` : ''}
+    ${body}`
   )
 }
 
@@ -96,7 +87,7 @@ function pager(base: string, page: number, total: number, extra = '') {
 export function tablesPage(user: User, project: Project, tables: TableSummary[]) {
   const body =
     tables.length === 0
-      ? html`<div class="empty">
+      ? html`<div class="glass card empty">
           <h3 style="margin-top:0">No tables yet</h3>
           <p>Create one in the SQL editor, for example:</p>
           <pre style="text-align:left;display:inline-block">
@@ -235,7 +226,7 @@ export function collectionsPage(
         <button class="btn btn-primary" type="submit">Create collection</button>
       </form>
       ${collections.length === 0
-        ? html`<div class="empty">
+        ? html`<div class="glass card empty">
             <h3 style="margin-top:0">No collections yet</h3>
             <p>
               Create a collection above, or insert from your app; MongoDB creates collections on
@@ -312,8 +303,8 @@ export function collectionPage(
         />
         <button class="btn" type="submit">Apply filter</button>
       </form>
-      <details class="card" style="margin-bottom:16px" ${options.draft ? html`open` : ''}>
-        <summary style="cursor:pointer;font-weight:700">Insert document</summary>
+      <details class="glass card" style="margin-bottom:16px" ${options.draft ? html`open` : ''}>
+        <summary>${icon('chevron', 16)} Insert document</summary>
         <form method="post" action="${base}/insert" class="stack" style="margin-top:12px">
           <label for="document" class="sr-only">Document</label>
           <textarea
@@ -330,7 +321,7 @@ ${options.draft ?? ''}</textarea
         </form>
       </details>
       ${data && data.documents.length === 0
-        ? html`<div class="empty">
+        ? html`<div class="glass card empty">
             <p>
               ${options.filter ? 'No documents match this filter.' : 'This collection is empty.'}
             </p>
@@ -340,7 +331,7 @@ ${options.draft ?? ''}</textarea
         ? html`<div class="stack">
               ${data.documents.map(
                 (doc) =>
-                  html`<div class="card doc">
+                  html`<div class="glass card doc">
                     <pre>${doc.json}</pre>
                     <form
                       method="post"
