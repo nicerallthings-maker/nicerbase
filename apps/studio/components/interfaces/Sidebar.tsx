@@ -79,7 +79,7 @@ export const Sidebar = ({ className, ...props }: SidebarProps) => {
       {!hideSideBar && (
         <SidebarMotion
           {...props}
-          className={cn('z-50', className)}
+          className={cn('z-50 nb-rail', className)}
           transition={{ delay: 0.4, duration: 0.4 }}
           overflowing={sidebarBehaviour === 'expandable'}
           collapsible="icon"
@@ -187,10 +187,7 @@ export function SideBarNavLink({
     disabled: route.disabled,
     isActive: active,
     isLoading,
-    className: cn(
-      'text-sm data-[active=true]:[&>svg]:text-brand',
-      sidebarBehaviour === 'open' ? 'px-2!' : ''
-    ),
+    className: cn('text-sm', sidebarBehaviour === 'open' ? 'px-2!' : ''),
     size: 'default' as const,
     onClick: onClick,
   }

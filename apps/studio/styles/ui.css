@@ -436,3 +436,38 @@
     @apply stroke-foreground-lighter;
   }
 }
+
+/*
+ * NicerBase sidebar rail: dark plum panel, light line icons, and a solid brand-pink
+ * tile for the active item. Solid colors only (no gradients), same in light and dark.
+ */
+.nb-rail [data-sidebar='sidebar'] {
+  background-color: #241429;
+  border-color: transparent;
+}
+.nb-rail [data-sidebar='menu-button'] {
+  color: rgb(255 255 255 / 0.66);
+  border-radius: 10px;
+}
+.nb-rail [data-sidebar='menu-button']:hover {
+  color: #fff;
+  background-color: rgb(255 255 255 / 0.08);
+}
+.nb-rail [data-sidebar='menu-button'][data-active='true'] {
+  color: #fff;
+  background-color: #e5168c;
+  box-shadow: 0 6px 16px rgb(229 22 140 / 0.35);
+}
+.nb-rail [data-sidebar='menu-button'][data-active='true'] svg {
+  color: #fff;
+}
+.nb-rail [data-sidebar='separator'],
+.nb-rail [role='separator'] {
+  background-color: rgb(255 255 255 / 0.1);
+}
+.nb-rail [data-sidebar='content'] button {
+  color: rgb(255 255 255 / 0.66);
+}
+.nb-rail [data-sidebar='content'] button:hover {
+  color: #fff;
+}

@@ -33,11 +33,10 @@ const buttonVariants = cva(
         primary: `
           border-0
           bg-primary-solid
-          bg-[image:var(--brand-gradient)]
-          text-white
+          text-primary-solid-foreground
           shadow-[var(--button-shadow-raised)]
-          hover:brightness-110
-          data-[state=open]:brightness-110
+          hover:bg-[var(--primary-solid-hover)]
+          data-[state=open]:bg-[var(--primary-solid-hover)]
           `,
         default: 'border-0 raised-control-surface',
         secondary: `

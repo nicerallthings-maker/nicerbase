@@ -206,8 +206,6 @@
       c h
   );
   --primary-solid-foreground: oklch(0.985 0.005 var(--primary-hue));
-  /* NicerBase signature gradient (logo pink → coral → amber), used on primary actions. */
-  --brand-gradient: linear-gradient(120deg, #f0219f 0%, #ff3d6e 55%, #ff8a1f 100%);
 
   --secondary: oklch(
     from var(--background) calc(l + var(--elevation-step) * var(--elevation-3)) c h

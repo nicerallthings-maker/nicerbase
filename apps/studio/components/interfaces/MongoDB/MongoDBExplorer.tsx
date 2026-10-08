@@ -47,7 +47,7 @@ export const MongoDBExplorer = () => {
 
 const MongoNotConfigured = () => (
   <div className="mx-auto flex max-w-xl flex-col items-center gap-3 px-6 py-24 text-center">
-    <div className="rounded-full bg-[image:var(--brand-gradient)] p-3 text-white">
+    <div className="rounded-full bg-primary-solid p-3 text-primary-solid-foreground">
       <Database size={20} />
     </div>
     <h2 className="text-lg text-foreground">Connect MongoDB to this project</h2>
@@ -63,7 +63,7 @@ const MongoNotConfigured = () => (
 
 const MongoOverview = ({ version }: { version: string | null }) => (
   <div className="mx-auto flex max-w-xl flex-col items-center gap-3 px-6 py-24 text-center">
-    <div className="rounded-full bg-[image:var(--brand-gradient)] p-3 text-white">
+    <div className="rounded-full bg-primary-solid p-3 text-primary-solid-foreground">
       <Database size={20} />
     </div>
     <h2 className="text-lg text-foreground">MongoDB {version}</h2>
