@@ -42,7 +42,7 @@ export function UserDropdown({
   const { theme, setTheme } = useTheme()
   const appStateSnapshot = useAppStateSnapshot()
   const profileShowEmailEnabled = useIsFeatureEnabled('profile:show_email')
-  const { username, avatarUrl, primaryEmail, isLoading } = useProfileNameAndPicture()
+  const { username, displayName, avatarUrl, primaryEmail, isLoading } = useProfileNameAndPicture()
 
   const { toggleFeaturePreviewModal } = useFeaturePreviewModal()
   const track = useTrack()
@@ -76,7 +76,7 @@ export function UserDropdown({
               <Loader2 className="animate-spin text-foreground-lighter" size={16} />
             </div>
           ) : (
-            <ProfileImage alt={username} src={avatarUrl} className="w-8 h-8 rounded-md" />
+            <ProfileImage alt={displayName} src={avatarUrl} className="w-8 h-8 rounded-full" />
           )}
         </ButtonTooltip>
       </DropdownMenuTrigger>

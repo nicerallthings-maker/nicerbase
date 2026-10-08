@@ -1,15 +1,21 @@
 import { useParams } from 'common'
 import {
-  Auth,
-  Compute,
-  Database,
-  EdgeFunctions,
-  Realtime,
-  SqlEditor,
-  Storage,
-  TableEditor,
-} from 'icons'
-import { Blocks, Leaf, Lightbulb, List, Settings, Telescope } from 'lucide-react'
+  Activity,
+  Braces,
+  Compass,
+  Cpu,
+  Fingerprint,
+  HardDrive,
+  Puzzle,
+  Radio,
+  ScrollText,
+  Server,
+  Sheet,
+  SlidersHorizontal,
+  Sparkles,
+  SquareTerminal,
+  Zap,
+} from 'lucide-react'
 
 import {
   useIsExplorerEnabled,
@@ -69,7 +75,7 @@ export const useGenerateToolRoutes = (): Route[] => {
       key: 'editor',
       label: 'Table Editor',
       disabled: !isProjectActive,
-      icon: <TableEditor size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Sheet size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/editor`),
       linkElement: <EditorIndexPageLink projectRef={ref} />,
       shortcutId: SHORTCUT_IDS.NAV_TABLE_EDITOR,
@@ -80,7 +86,7 @@ export const useGenerateToolRoutes = (): Route[] => {
             key: 'explorer',
             label: 'Explorer',
             disabled: !isProjectActive,
-            icon: <SqlEditor size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Compass size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/explorer`),
             shortcutId: SHORTCUT_IDS.NAV_SQL_EDITOR,
           },
@@ -90,7 +96,7 @@ export const useGenerateToolRoutes = (): Route[] => {
             key: 'sql',
             label: 'SQL Editor',
             disabled: !isProjectActive,
-            icon: <SqlEditor size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <SquareTerminal size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/sql`),
             shortcutId: SHORTCUT_IDS.NAV_SQL_EDITOR,
           },
@@ -117,7 +123,7 @@ export const generateProductRoutes = (
       key: 'database',
       label: 'Database',
       disabled: !isProjectActive,
-      icon: <Database size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Server size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link:
         ref &&
         (isProjectBuilding
@@ -131,7 +137,7 @@ export const generateProductRoutes = (
       key: 'mongodb',
       label: 'MongoDB',
       disabled: !isProjectActive,
-      icon: <Leaf size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Braces size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/mongodb`),
       shortcutId: SHORTCUT_IDS.NAV_MONGODB,
     },
@@ -141,7 +147,7 @@ export const generateProductRoutes = (
             key: 'auth',
             label: 'Authentication',
             disabled: !isProjectActive,
-            icon: <Auth size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Fingerprint size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link:
               ref &&
               (isProjectBuilding
@@ -159,7 +165,7 @@ export const generateProductRoutes = (
             key: 'storage',
             label: 'Storage',
             disabled: !isProjectActive,
-            icon: <Storage size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <HardDrive size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/storage/files`),
             shortcutId: SHORTCUT_IDS.NAV_STORAGE,
           },
@@ -171,7 +177,7 @@ export const generateProductRoutes = (
             key: 'functions',
             label: 'Edge Functions',
             disabled: false,
-            icon: <EdgeFunctions size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Zap size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && `/project/${ref}/functions`,
             shortcutId: SHORTCUT_IDS.NAV_FUNCTIONS,
           },
@@ -183,7 +189,7 @@ export const generateProductRoutes = (
             key: 'compute',
             label: PRODUCT_NAME,
             disabled: !isProjectActive,
-            icon: <Compute size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Cpu size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/compute`),
             isNew: true,
             shortcutId: SHORTCUT_IDS.NAV_COMPUTE,
@@ -196,7 +202,7 @@ export const generateProductRoutes = (
             key: 'realtime',
             label: 'Realtime',
             disabled: !isProjectActive,
-            icon: <Realtime size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Radio size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/realtime/inspector`),
             shortcutId: SHORTCUT_IDS.NAV_REALTIME,
           },
@@ -221,7 +227,7 @@ export const generateOtherRoutes = (
       key: 'advisors',
       label: 'Advisors',
       disabled: !isProjectActive,
-      icon: <Lightbulb size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Sparkles size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/advisors/security`),
       shortcutId: SHORTCUT_IDS.NAV_ADVISORS,
     },
@@ -231,7 +237,7 @@ export const generateOtherRoutes = (
             key: 'observability',
             label: 'Observability',
             disabled: !isProjectActive,
-            icon: <Telescope size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <Activity size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link:
               ref &&
               (isProjectBuilding
@@ -249,7 +255,7 @@ export const generateOtherRoutes = (
             key: 'logs',
             label: 'Logs',
             disabled: false,
-            icon: <List size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <ScrollText size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             link:
               ref &&
               (unifiedLogsEnabled ? `/project/${ref}/logs` : `/project/${ref}/logs/explorer`),
@@ -261,7 +267,7 @@ export const generateOtherRoutes = (
       key: 'integrations',
       label: 'Integrations',
       disabled: !isProjectActive,
-      icon: <Blocks size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Puzzle size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && (isProjectBuilding ? buildingUrl : `/project/${ref}/integrations`),
       shortcutId: SHORTCUT_IDS.NAV_INTEGRATIONS,
     },
@@ -288,7 +294,7 @@ export const generateSettingsRoutes = (ref?: string): Route[] => {
     {
       key: 'settings',
       label: 'Project Settings',
-      icon: <Settings size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <SlidersHorizontal size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       link: ref && `/project/${ref}/settings/general`,
       disabled: false,
       shortcutId: SHORTCUT_IDS.NAV_SETTINGS,

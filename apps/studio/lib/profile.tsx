@@ -122,8 +122,18 @@ export const ProfileProvider = ({ children }: PropsWithChildren<{}>) => {
 
 export const useProfile = () => useContext(ProfileContext)
 
+/** First and last name when set, otherwise the username. */
+export function getProfileDisplayName(
+  profile?: Pick<Profile, 'first_name' | 'last_name' | 'username'>
+) {
+  const fullName = [profile?.first_name, profile?.last_name].filter(Boolean).join(' ').trim()
+  return fullName || profile?.username || undefined
+}
+
 export function useProfileNameAndPicture(): {
   username?: string
+  /** First and last name when set, otherwise the username. */
+  displayName?: string
   primaryEmail?: string
   avatarUrl?: string
   isLoading: boolean
@@ -140,6 +150,7 @@ export function useProfileNameAndPicture(): {
 
   return {
     username: profile?.username,
+    displayName: getProfileDisplayName(profile),
     primaryEmail: profile?.primary_email,
     avatarUrl,
     isLoading: isLoadingProfile || isLoadingIdentities,

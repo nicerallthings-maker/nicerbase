@@ -1,8 +1,16 @@
 import { LOCAL_STORAGE_KEYS, useFlag, useIsMFAEnabled, useParams } from 'common'
 import { AnimatePresence, motion, MotionProps } from 'framer-motion'
-import { Home } from 'icons'
 import { isUndefined } from 'lodash'
-import { Blocks, Boxes, ChartArea, PanelLeftDashed, Receipt, Settings, Users } from 'lucide-react'
+import {
+  BarChart3,
+  Contact,
+  CreditCard,
+  LayoutDashboard,
+  LayoutGrid,
+  PanelLeftDashed,
+  Puzzle,
+  SlidersHorizontal,
+} from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ComponentProps, ComponentPropsWithoutRef, FC, ReactNode, useEffect } from 'react'
@@ -304,7 +312,7 @@ const ProjectLinks = () => {
             route={{
               key: 'HOME',
               label: 'Project Overview',
-              icon: <Home size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+              icon: <LayoutDashboard size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
               link: `/project/${ref}`,
               linkElement: <ProjectIndexPageLink projectRef={ref} />,
               shortcutId: SHORTCUT_IDS.NAV_HOME,
@@ -418,28 +426,28 @@ const OrganizationLinks = () => {
       label: 'Projects',
       href: `/org/${organizationSlug}`,
       key: 'projects',
-      icon: <Boxes size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <LayoutGrid size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       shortcutId: SHORTCUT_IDS.NAV_ORG_PROJECTS,
     },
     {
       label: 'Team',
       href: `/org/${organizationSlug}/team`,
       key: 'team',
-      icon: <Users size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Contact size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       shortcutId: SHORTCUT_IDS.NAV_ORG_TEAM,
     },
     {
       label: 'Integrations',
       href: `/org/${organizationSlug}/integrations`,
       key: 'integrations',
-      icon: <Blocks size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <Puzzle size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       shortcutId: SHORTCUT_IDS.NAV_ORG_INTEGRATIONS,
     },
     {
       label: 'Usage',
       href: `/org/${organizationSlug}/usage`,
       key: 'usage',
-      icon: <ChartArea size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <BarChart3 size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       shortcutId: SHORTCUT_IDS.NAV_ORG_USAGE,
     },
     ...(showBilling
@@ -448,7 +456,7 @@ const OrganizationLinks = () => {
             label: 'Billing',
             href: `/org/${organizationSlug}/billing`,
             key: 'billing',
-            icon: <Receipt size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+            icon: <CreditCard size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
             shortcutId: SHORTCUT_IDS.NAV_ORG_BILLING,
           },
         ]
@@ -457,7 +465,7 @@ const OrganizationLinks = () => {
       label: 'Organization Settings',
       href: `/org/${organizationSlug}/general`,
       key: 'settings',
-      icon: <Settings size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
+      icon: <SlidersHorizontal size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />,
       shortcutId: SHORTCUT_IDS.NAV_ORG_SETTINGS,
     },
   ]

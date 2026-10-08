@@ -3,6 +3,14 @@ import Image from 'next/image'
 import { ReactNode, useState } from 'react'
 import { cn } from 'ui'
 
+/** "Ada Lovelace" -> "AL", "ada" -> "AD", "" -> "". */
+export function getInitials(name?: string) {
+  const parts = (name ?? '').trim().split(/\s+/).filter(Boolean)
+  if (parts.length === 0) return ''
+  const letters = parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : parts[0].slice(0, 2)
+  return letters.toUpperCase()
+}
+
 interface ProfileImageProps {
   alt?: string
   src?: string
@@ -25,9 +33,19 @@ export const ProfileImage = ({ alt, src, placeholder, className }: ProfileImageP
   ) : (
     (placeholder ?? (
       <figure
-        className={cn('bg-foreground rounded-full flex items-center justify-center', className)}
+        className={cn(
+          'bg-primary-solid text-primary-solid-foreground rounded-full flex items-center justify-center',
+          className
+        )}
+        aria-label={alt}
       >
-        <User size={18} strokeWidth={1.5} className="text-background" />
+        {getInitials(alt) ? (
+          <span className="text-[11px] font-semibold leading-none tracking-wide">
+            {getInitials(alt)}
+          </span>
+        ) : (
+          <User size={18} strokeWidth={1.5} />
+        )}
       </figure>
     ))
   )

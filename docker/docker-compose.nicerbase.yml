@@ -12,3 +12,7 @@ services:
       context: ..
       dockerfile: apps/studio/Dockerfile
       target: production
+    environment:
+      # Name and email shown on the profile avatar (initials) in Studio
+      STUDIO_ADMIN_NAME: ${STUDIO_ADMIN_NAME:-NicerBase Admin}
+      STUDIO_ADMIN_EMAIL: ${STUDIO_ADMIN_EMAIL:-admin@nicerbase.local}
